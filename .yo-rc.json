@@ -1,0 +1,11 @@
+{
+  "generator-bangular": {
+    "version": "0.7.4",
+    "filters": {
+      "backend": "json",
+      "ngCookies": true,
+      "ngSanitize": true,
+      "ngAnimate": true
+    }
+  }
+}
