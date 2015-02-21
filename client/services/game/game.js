@@ -4,7 +4,7 @@ angular.module('bsf')
   .factory('Game', function ($q) {
     var Game = Parse.Object.extend("Game");
 
-    return {
+    var resultGame = {
       create: function (data) {
         var deferred = $q.defer();
 
@@ -163,8 +163,33 @@ angular.module('bsf')
           }
         });
         return deferred.promise;
+      },
+
+      getMyCurrentGames: function(userId){
+        var deferred = $q.defer();
+        var myCurrentGames = [];
+        var allGames = resultGame.getGames();
+        console.log("allGames");
+        console.log(allGames);
+        for (var i = 0; i < allGames.length; i++) {
+          var thisGame = allGames[i];
+          for (var n = 0; n < thisGame.attributes.players.length; n++) {
+            var thisPlayer = thisGame.attributes.players[n];
+              if (thisPlayer.id === userId) {
+                myCurrentGames.push(thisGame);
+                break;
+              }
+          }
+        }
+        console.log("COooeeeyyyy");
+
+        console.log(myCurrentGames);
+        return deferred.promise;
       }
+
     };
+
+    return resultGame;
 
   });
 

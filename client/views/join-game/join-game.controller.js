@@ -46,4 +46,10 @@ angular.module('bsf')
       $location.path('/login');
     };
 
+
+    $scope.testGetMyCurrentGame = function() {
+      var currentUser = Parse.User.current();
+      Game.getMyCurrentGames(currentUser.id);
+    }
+
   });
