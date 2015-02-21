@@ -2,7 +2,7 @@
 
 angular.module('bsf')
 
-  .controller('PlayCtrl', function ($scope, Game, $location, $timeout) {
+  .controller('PlayCtrl', function ($scope, Game, $location, currentGame, $route) {
 
     var vm = this;
 
@@ -54,9 +54,6 @@ angular.module('bsf')
       return finalCss;
     }
 
-
-
-
     $scope.parseAndExecute = function() {
       vm.compiledCss = getCss();
       $( "#p1" ).html($scope.html);
@@ -70,8 +67,9 @@ angular.module('bsf')
         'html' : $scope.html
       };
 
-      var gameName = "toto";
-      Game.validate(data, gameName)
+      var gameId = $route.current.params.game;
+
+      Game.validate(data, gameId)
         .then(function () {
           $location.path('/');
         })
