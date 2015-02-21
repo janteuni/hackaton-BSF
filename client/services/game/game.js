@@ -119,6 +119,7 @@ angular.module('bsf')
               if (index != -1) {
                 players[index].HTMLData = data.html;
                 players[index].CSSData = data.css;
+                players[index].done = true;
                 result.attributes.players = players;
 
                 result.save(null, {
@@ -171,12 +172,10 @@ angular.module('bsf')
               console.log(result);
                 deferred.resolve(result);
               } else {
-              console.log("err");
                 deferred.reject();
               }
           },
           error: function (error) {
-            console.log("nope");
             deferred.reject(error);
           }
         });
