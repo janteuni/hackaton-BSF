@@ -1,8 +1,12 @@
-
-<form name="form" ng-submit="joinGame(form)"  novalidate>
+<!--<ul>-->
+  <!--<li ng-repeat="item in allGames">-->
+    <!--{{item}}-->
+  <!--</li>-->
+<!--</ul>-->
+<form name="form" ng-submit="joinGame(form)" novalidate>
   <div>
-    <label for="name">Nom du jeu</label>
-    <input type="text" id="name" name="name" placeholder="MyAwesomeGame" ng-model="game.name">
+    <label for="gameId">Jeu à rejoindre</label>
+    <select ng-model="game.id" id="gameId" ng-options="item.attributes.name for item in allGames"></select>
   </div>
   <button type="submit">Rejoindre ce jeu!</button>
 </form>

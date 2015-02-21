@@ -1,16 +1,20 @@
 <button ng-click="parseAndExecute()">GO</button>
 
-<style id="style"></style>
+<style id="style">
+  {{ vm.compiledCss }}
+</style>
+
 <div id="p1"></div>
 
 
-<div class="cb" ng-click="showDetails = ! showDetails">HTLM</div>
-<div class="cb" ng-click="showDetails = ! showDetails">CSS</div>
+<div class="cb" ng-click="vm.tab = 1">tab 1</div>
+<div class="cb" ng-click="vm.tab = 2">tab 2</div>
 
-<div ng-if="showDetails" ng-click="setTab()">
+<div ng-show="vm.tab == 1">
   <textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-model="html"></textarea>
 </div>
-<div ng-if="!showDetails">
+
+<div ng-show="vm.tab == 2">
   <textarea ui-codemirror ui-codemirror-opts="editorOptions2" ng-model="css"></textarea>
 </div>
 

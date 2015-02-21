@@ -9,36 +9,24 @@ angular.module('bsf')
       name: 'JoinGameCtrl'
     });
 
-    //$scope.game = {};
-    //var query = new Parse.Query(Game);
-    //query.find({
-    //  success: function (results) {
-    //    $scope.allGames = results;
-    //  },
-    //  error: function (error) {
-    //    console.log("Game search error! ");
-    //    $scope.allGames = [];
-    //  }
-    //});
+    $scope.game = {};
+    $scope.allGames = [];
+
+    Game.getGames()
+      .then(function (allGames) {
+        console.log(allGames);
+        $scope.allGames = allGames;
+
+      })
+      .catch(function (err) {
+        console.dir(err.data);
+      });
 
     $scope.joinGame = function (form) {
-      console.dir($scope.game);
-      Game.join($scope.game.name)
+      console.dir($scope.game.id.id);
+      Game.join($scope.game.id.id)
         .then(function () {
           console.log("joined game!!");
-
-        })
-        .catch(function (err) {
-          console.dir(err.data);
-        });
-    };
-
-    $scope.validateGame = function () {
-      console.dir($scope.game);
-      var currentUser = Parse.User.current();
-      Game.validate(currentUser.id)
-        .then(function () {
-          console.log("tried to validate my part!!");
 
         })
         .catch(function (err) {

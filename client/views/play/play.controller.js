@@ -1,16 +1,17 @@
 'use strict';
 
 angular.module('bsf')
-  .controller('PlayCtrl', function ($scope, Game, $location) {
 
+  .controller('PlayCtrl', function ($scope, Game, $location, $timeout) {
 
     var vm = this;
-    $scope.css= 'h1 { color:red }';
-    $scope.html = '<h1>TOTOTOTOT</h1>';
 
-    angular.extend(vm, {
-      name: 'PlayCtrl'
-    });
+    vm.compiledCss = '';
+
+    $scope.css= 'h1 { color:red }';
+    $scope.html = '<h1>TOTOTOTOTO</h1>';
+
+    vm.tab = 1;
 
     $scope.editorOptions = {
       lineWrapping : true,
@@ -53,8 +54,11 @@ angular.module('bsf')
       return finalCss;
     }
 
+
+
+
     $scope.parseAndExecute = function() {
-      $( "style" ).html(getCss());
+      vm.compiledCss = getCss();
       $( "#p1" ).html($scope.html);
     };
 
