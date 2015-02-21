@@ -31,9 +31,7 @@ angular.module('bsf')
       mode: 'html'
     };
 
-
-
-    $scope.parseAndExecute = function() {
+    function getCss() {
       var insert = "#p1";
 
       var regexp = /\S+(?= {)/g;
@@ -52,8 +50,11 @@ angular.module('bsf')
         finalCss = css;
         i++;
       });
+      return finalCss;
+    }
 
-      $( "style" ).html(finalCss);
+    $scope.parseAndExecute = function() {
+      $( "style" ).html(getCss());
       $( "#p1" ).html($scope.html);
     };
   });

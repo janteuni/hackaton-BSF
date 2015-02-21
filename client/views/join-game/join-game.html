@@ -1,0 +1,10 @@
+
+<form name="form" ng-submit="joinGame(form)"  novalidate>
+  <div>
+    <label for="name">Nom du jeu</label>
+    <input type="text" id="name" name="name" placeholder="MyAwesomeGame" ng-model="game.name">
+  </div>
+  <button type="submit">Rejoindre ce jeu!</button>
+</form>
+
+<button ng-click="logout()">Log Out</button>
