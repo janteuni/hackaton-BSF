@@ -171,11 +171,12 @@ angular.module('bsf')
                 }
               }
             }
-            console.log("myGames");
             console.log(myCurrentGames);
+            deferred.resolve(myCurrentGames);
           })
           .catch(function (err) {
             console.dir(err.data);
+            deferred.reject();
           });
         return deferred.promise;
       },

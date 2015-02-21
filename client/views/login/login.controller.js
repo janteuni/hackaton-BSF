@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bsf')
-  .controller('LoginCtrl', function ($scope, User) {
+  .controller('LoginCtrl', function ($scope, User, $location) {
 
     var vm = this;
 
@@ -16,7 +16,7 @@ angular.module('bsf')
       User.logIn($scope.user)
         .then(function () {
           console.log("OK");
-
+          $location.path('/');
         })
         .catch(function (err) {
           console.dir(err.data);
@@ -28,6 +28,7 @@ angular.module('bsf')
           success: function (user) {
             if (!user.existed()) {
               alert("User signed up and logged in through Facebook!");
+              $location.path('/');
             } else {
               alert("User logged in through Facebook!");
             }

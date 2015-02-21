@@ -38,15 +38,6 @@ angular.module('bsf')
         });
     };
 
-    $scope.logout = function () {
-      Parse.User.logOut();
-      var currentUser = Parse.User.current();
-      alert("You are logging out!");
-      console.dir("Logged Out - Current User now " + currentUser);
-      $location.path('/login');
-    };
-
-
     $scope.testGetMyCurrentGame = function() {
       var currentUser = Parse.User.current();
       Game.getMyCurrentGames(currentUser.id);
