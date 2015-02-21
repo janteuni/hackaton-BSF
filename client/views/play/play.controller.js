@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bsf')
-  .controller('PlayCtrl', function ($scope) {
+  .controller('PlayCtrl', function ($scope, Game) {
 
     var vm = this;
     $scope.css= 'h1 { color:red }';
@@ -58,19 +58,23 @@ angular.module('bsf')
       $( "#p1" ).html($scope.html);
     };
 
-    $scope.validate = function() {
+
+    $scope.validateGame = function () {
+
       var data = {
         'css': getCss(),
         'html' : $scope.html
       };
-      console.dir(data);
-      /*Game.saveData(data)
+
+      var gameName = "test";
+      Game.validate(data, gameName)
         .then(function () {
-          console.log("OK");
+          console.log("tried to validate my part!!");
 
         })
         .catch(function (err) {
           console.dir(err.data);
-        });*/
-    }
+        });
+    };
+
   });

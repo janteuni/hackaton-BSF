@@ -40,8 +40,9 @@ angular.module('bsf')
           error: function (error) {
             console.log("Game name check error");
             console.log(error);
+            deferred.reject(error);
           }
-        })
+        });
         return deferred.promise;
       },
 
@@ -92,7 +93,52 @@ angular.module('bsf')
           }
         });
         return deferred.promise;
+      },
+
+      validate: function(data, gameName) {
+        var deferred = $q.defer();
+
+        //Save my data
+        var query = new Parse.Query(Game);
+        query.equalTo("name", gameName);
+        query.find({
+          success: function (results) {
+            if (results.length == 1) {
+              console.log(Parse.User.current());
+              console.log(results[0]);
+              var players = results[0].attributes.players;
+              var tab = players.map(function (el) { return String(el.id); });
+              var index = tab.indexOf(Parse.User.current().id);
+              if (index == -1) {
+                deferred.reject("Player not register in this game!");
+              } else {
+                results[0].attributes.players[index].set("HTMLData", data.html);
+                results[0].attributes.players[index].set("CSSData", data.css);
+                results[0].save();
+                results[0].save(null, {
+                  success: function () {
+                    console.log("done");
+                    deferred.resolve();
+                  },
+                  error: function (game, error) {
+                    deferred.reject(error);
+                  }
+                });
+                deferred.resolve();
+              }
+
+            } else {
+              deferred.reject("to much game found!");
+            }
+          },
+          error: function (error) {
+            deferred.reject(error);
+          }
+        });
+        return deferred.promise;
       }
     };
 
   });
+
+[{"CSSData":"","HTMLData":"","done":false,"player":{"__type":"Pointer","className":"_User","objectId":"hCrULM24I6"}},{"__type":"Pointer","className":"_User","objectId":"wW9vFuwMHn"}]
