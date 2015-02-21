@@ -45,8 +45,9 @@ angular.module('bsf')
           error: function (error) {
             console.log("Game name check error");
             console.log(error);
+            deferred.reject(error);
           }
-        })
+        });
         return deferred.promise;
       },
 
@@ -83,7 +84,12 @@ angular.module('bsf')
                   console.log("ALREADY PARTICIPATING");
                   alert("You are already participating in this game!");
                 } else {
-                  game.add("players", currentUser);
+                  game.add("players", [{
+                    player: currentUser,
+                    done: false,
+                    HTMLData: "",
+                    CSSData: ""
+                  }]);
                   game.save();
                   console.log("Successfully added to the game!");
                 }
@@ -94,6 +100,48 @@ angular.module('bsf')
           },
           error: function (error) {
             console.log("Game search error! ");
+          }
+        });
+        return deferred.promise;
+      },
+
+
+      validate: function(data, gameName) {
+        var deferred = $q.defer();
+
+        //Save my data
+        var query = new Parse.Query(Game);
+        query.equalTo("name", gameName);
+        query.find({
+          success: function (results) {
+            if (results.length == 1) {
+              var players = results[0].attributes.players;
+              var tab = players.map(function (el) { return el.player.id; });
+              var index = tab.indexOf(Parse.User.current().id);
+              if (index != -1) {
+                players[index].HTMLData = data.html;
+                players[index].CSSData = data.css;
+                results[0].attributes.players = players;
+
+                results[0].save(null, {
+                  success: function () {
+                    deferred.resolve();
+                  },
+                  error: function (game, error) {
+                    deferred.reject(error.message);
+                  }
+                });
+                deferred.resolve();
+              } else {
+                deferred.reject("Player not register in this game!");
+              }
+
+            } else {
+              deferred.reject("to much game found!");
+            }
+          },
+          error: function (error) {
+            deferred.reject(error);
           }
         });
         return deferred.promise;
@@ -119,3 +167,4 @@ angular.module('bsf')
     };
 
   });
+
