@@ -27,10 +27,10 @@ angular.module('bsf')
       });
 
     $scope.joinGame = function (form) {
-      console.dir($scope.game.id.id);
       Game.join($scope.game.id.id)
         .then(function () {
-          console.log("joined game!!");
+          console.log("ooook");
+          $location.path('/play/' + $scope.game.id.id);
 
         })
         .catch(function (err) {
