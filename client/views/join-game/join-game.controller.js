@@ -9,17 +9,17 @@ angular.module('bsf')
       name: 'JoinGameCtrl'
     });
 
-    $scope.game = {};
-    var query = new Parse.Query(Game);
-    query.find({
-      success: function (results) {
-        $scope.allGames = results;
-      },
-      error: function (error) {
-        console.log("Game search error! ");
-        $scope.allGames = [];
-      }
-    });
+    //$scope.game = {};
+    //var query = new Parse.Query(Game);
+    //query.find({
+    //  success: function (results) {
+    //    $scope.allGames = results;
+    //  },
+    //  error: function (error) {
+    //    console.log("Game search error! ");
+    //    $scope.allGames = [];
+    //  }
+    //});
 
     $scope.joinGame = function (form) {
       console.dir($scope.game);
@@ -32,6 +32,7 @@ angular.module('bsf')
           console.dir(err.data);
         });
     };
+
     $scope.validateGame = function () {
       console.dir($scope.game);
       var currentUser = Parse.User.current();
@@ -43,7 +44,7 @@ angular.module('bsf')
         .catch(function (err) {
           console.dir(err.data);
         });
-    }
+    };
 
     $scope.logout = function () {
       Parse.User.logOut();
@@ -51,6 +52,6 @@ angular.module('bsf')
       alert("You are logging out!");
       console.dir("Logged Out - Current User now " + currentUser);
       $location.path('/login');
-    }
+    };
 
   });
