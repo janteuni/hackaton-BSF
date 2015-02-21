@@ -57,14 +57,8 @@ angular.module('bsf')
         var query = new Parse.Query(Game);
         query.get(gameId, {
           success: function (result) {
-            console.log(result);
             //Check if game exists
             if (result) {
-              console.log("Found the game! ");
-              console.log(result);
-              console.log("Current user");
-              console.log(currentUser);
-
               var game = result;
               //check if game is full..
               if (game.attributes.players.length >= game.attributes.num_players )
@@ -74,14 +68,12 @@ angular.module('bsf')
                 var found = 0;
                 for (var i = 0; i < game.attributes.players.length; i++) {
                   var p = game.attributes.players[i].player;
-                  console.log("TEST " + currentUser.id + " " + p.id);
                   if (currentUser.id === p.id) {
                     found++;
                     break;
                   }
                 }
-                if (found){
-                  console.log("ALREADY PARTICIPATING");
+                if (found) {
                   alert("You are already participating in this game!");
                 } else {
                   game.add("players", {
@@ -104,6 +96,7 @@ angular.module('bsf')
         });
         return deferred.promise;
       },
+
 
       validate: function(data, gameId) {
         var deferred = $q.defer();
@@ -146,7 +139,7 @@ angular.module('bsf')
         return deferred.promise;
       },
 
-      getGames: function(){
+      getGames: function () {
         var deferred = $q.defer();
         var allGames = [];
 
@@ -159,6 +152,29 @@ angular.module('bsf')
             deferred.reject(error);
           }
         });
+        return deferred.promise;
+      },
+
+      getMyCurrentGames: function (userId) {
+        var deferred = $q.defer();
+        var myCurrentGames = [];
+        resultGame.getGames()
+          .then(function (allGames) {
+            for (var i = 0; i < allGames.length; i++) {
+              var thisGame = allGames[i];
+              for (var n = 0; n < thisGame.attributes.players.length; n++) {
+                var thisPlayer = thisGame.attributes.players[n].player;
+                if (thisPlayer.id === userId) {
+                  myCurrentGames.push(thisGame);
+                }
+              }
+            }
+            console.log("myGames");
+            console.log(myCurrentGames);
+          })
+          .catch(function (err) {
+            console.dir(err.data);
+          });
         return deferred.promise;
       },
 
@@ -201,25 +217,6 @@ angular.module('bsf')
             deferred.reject(err.data);
           });
 
-        return deferred.promise;
-      },
-
-      getMyCurrentGames: function(userId){
-        var deferred = $q.defer();
-        var myCurrentGames = [];
-        var allGames = resultGame.getGames();
-        console.log("allGames");
-        console.log(allGames);
-        for (var i = 0; i < allGames.length; i++) {
-          var thisGame = allGames[i];
-          for (var n = 0; n < thisGame.attributes.players.length; n++) {
-            var thisPlayer = thisGame.attributes.players[n];
-              if (thisPlayer.id === userId) {
-                myCurrentGames.push(thisGame);
-                break;
-              }
-          }
-        }
         return deferred.promise;
       }
 
