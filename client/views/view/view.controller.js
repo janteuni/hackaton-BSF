@@ -11,8 +11,6 @@ angular.module('bsf')
 
     vm.currentGame = currentGame;
     vm.compiledCss = "";
-    
-
 
 
   });
