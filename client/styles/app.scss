@@ -1,3 +1,17 @@
 body {
   font-family: sans-serif;
 }
+.cb {
+list-style: none;
+padding: 10px;
+display:inline-block;
+background-color: #000;
+color: #FFF;
+border: 1px solid black;
+border-radius: 5px;
+}
+.cb:hover{
+  background-color: #4a4a4a;
+  color: #FFF;
+}
+
