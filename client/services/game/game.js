@@ -84,7 +84,12 @@ angular.module('bsf')
                   console.log("ALREADY PARTICIPATING");
                   alert("You are already participating in this game!");
                 } else {
-                  game.add("players", currentUser);
+                  game.add("players", [{
+                    player: currentUser,
+                    done: false,
+                    HTMLData: "",
+                    CSSData: ""
+                  }]);
                   game.save();
                   console.log("Successfully added to the game!");
                 }
@@ -110,27 +115,25 @@ angular.module('bsf')
         query.find({
           success: function (results) {
             if (results.length == 1) {
-              console.log(Parse.User.current());
-              console.log(results[0]);
               var players = results[0].attributes.players;
-              var tab = players.map(function (el) { return String(el.id); });
+              var tab = players.map(function (el) { return el.player.id; });
               var index = tab.indexOf(Parse.User.current().id);
-              if (index == -1) {
-                deferred.reject("Player not register in this game!");
-              } else {
-                results[0].attributes.players[index].set("HTMLData", data.html);
-                results[0].attributes.players[index].set("CSSData", data.css);
-                results[0].save();
+              if (index != -1) {
+                players[index].HTMLData = data.html;
+                players[index].CSSData = data.css;
+                results[0].attributes.players = players;
+
                 results[0].save(null, {
                   success: function () {
-                    console.log("done");
                     deferred.resolve();
                   },
                   error: function (game, error) {
-                    deferred.reject(error);
+                    deferred.reject(error.message);
                   }
                 });
                 deferred.resolve();
+              } else {
+                deferred.reject("Player not register in this game!");
               }
 
             } else {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bsf')
-  .controller('PlayCtrl', function ($scope, Game) {
+  .controller('PlayCtrl', function ($scope, Game, $location) {
 
 
     var vm = this;
@@ -66,11 +66,10 @@ angular.module('bsf')
         'html' : $scope.html
       };
 
-      var gameName = "test";
+      var gameName = "toto";
       Game.validate(data, gameName)
         .then(function () {
-          console.log("tried to validate my part!!");
-
+          $location.path('/');
         })
         .catch(function (err) {
           console.dir(err.data);
