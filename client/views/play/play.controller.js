@@ -31,9 +31,7 @@ angular.module('bsf')
     };
 
 
-
-
-    $scope.parseAndExecute = function() {
+    function getCss() {
       var insert = "#p1";
 
       var regexp = /\S+(?= {)/g;
@@ -52,8 +50,27 @@ angular.module('bsf')
         finalCss = css;
         i++;
       });
+      return finalCss;
+    }
 
-      $( "style" ).html(finalCss);
+    $scope.parseAndExecute = function() {
+      $( "style" ).html(getCss());
       $( "#p1" ).html($scope.html);
     };
+
+    $scope.validate = function() {
+      var data = {
+        'css': getCss(),
+        'html' : $scope.html
+      };
+      console.dir(data);
+      /*Game.saveData(data)
+        .then(function () {
+          console.log("OK");
+
+        })
+        .catch(function (err) {
+          console.dir(err.data);
+        });*/
+    }
   });
