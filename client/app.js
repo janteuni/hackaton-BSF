@@ -4,7 +4,8 @@ angular.module('bsf', [
   'ngRoute',
   'ngCookies',
   'ngSanitize',
-  'ngAnimate'
+  'ngAnimate',
+  'ui.codemirror'
 ])
   .config(function ($routeProvider, $locationProvider) {
 
