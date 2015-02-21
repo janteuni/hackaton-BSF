@@ -1,83 +1,86 @@
 <!DOCTYPE html>
 <html ng-app="bsf">
-  <head>
+<head>
 
-    <base href="/">
+  <base href="/">
 
-    <title>bsf</title>
+  <title>bsf</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
 
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
-    <!-- build:css app.css -->
-      <!-- bower:css -->
-      <!-- endinject -->
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
+  <!-- build:css app.css -->
+  <!-- bower:css -->
+  <!-- endinject -->
 
-      <!-- inject:css -->
-      <link rel="stylesheet" href="styles/css/app.css">
-      <!-- endinject -->
-    <!-- endbuild -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="styles/css/app.css">
+  <!-- endinject -->
+  <!-- endbuild -->
 
-  </head>
-  <body>
+</head>
+<body>
 
-  <script>
-    Parse.initialize("ZtvgDDxkifCNdeMaF3AXmiNug4aq3zwyrDTsfYMr", "WAEziz9shE0sB73KM7YvWpR6bYOJQSrDuvJFna2t");
+<script>
+  Parse.initialize("ZtvgDDxkifCNdeMaF3AXmiNug4aq3zwyrDTsfYMr", "WAEziz9shE0sB73KM7YvWpR6bYOJQSrDuvJFna2t");
 
-    window.fbAsyncInit = function() {
-      Parse.FacebookUtils.init({ // this line replaces FB.init({
-        appId      : '329895547206131', // Facebook App ID
-        status     : true,  // check Facebook Login status
-        cookie     : true,  // enable cookies to allow Parse to access the session
-        xfbml      : true,  // initialize Facebook social plugins on the page
-        version    : 'v2.2' // point to the latest Facebook Graph API version
-      });
-    };
+  window.fbAsyncInit = function () {
+    Parse.FacebookUtils.init({ // this line replaces FB.init({
+      appId: '329895547206131', // Facebook App ID
+      status: true,  // check Facebook Login status
+      cookie: true,  // enable cookies to allow Parse to access the session
+      xfbml: true,  // initialize Facebook social plugins on the page
+      version: 'v2.2' // point to the latest Facebook Graph API version
+    });
+  };
 
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 
+<div ng-include src="header.html" ng-controller="HeaderCtrl"></div>
 
+<strong>bsf</strong>
 
-    <strong>bsf</strong>
+<div ng-view></div>
 
-    <div ng-view></div>
+<!-- build:js app.js -->
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<!-- endinject -->
 
-    <!-- build:js app.js -->
-      <!-- bower:js -->
-      <script src="bower_components/angular/angular.js"></script>
-      <script src="bower_components/angular-route/angular-route.js"></script>
-      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-      <script src="bower_components/angular-animate/angular-animate.js"></script>
-      <!-- endinject -->
+<!-- inject:js -->
+<script src="app.js"></script>
+<script src="services/game/game.js"></script>
+<script src="services/user/user.js"></script>
+<script src="views/create-game/create-game.controller.js"></script>
+<script src="views/create-game/create-game.js"></script>
+<script src="views/home/home.controller.js"></script>
+<script src="views/home/home.js"></script>
+<script src="views/join-game/join-game.controller.js"></script>
+<script src="views/join-game/join-game.js"></script>
+<script src="views/login/login.controller.js"></script>
+<script src="views/login/login.js"></script>
+<script src="views/signup/signup.controller.js"></script>
+<script src="views/signup/signup.js"></script>
+<!-- endinject -->
+<!-- endbuild -->
 
-      <!-- inject:js -->
-      <script src="app.js"></script>
-      <script src="services/game/game.js"></script>
-      <script src="services/user/user.js"></script>
-      <script src="views/create-game/create-game.controller.js"></script>
-      <script src="views/create-game/create-game.js"></script>
-      <script src="views/home/home.controller.js"></script>
-      <script src="views/home/home.js"></script>
-      <script src="views/join-game/join-game.controller.js"></script>
-      <script src="views/join-game/join-game.js"></script>
-      <script src="views/login/login.controller.js"></script>
-      <script src="views/login/login.js"></script>
-      <script src="views/signup/signup.controller.js"></script>
-      <script src="views/signup/signup.js"></script>
-      <!-- endinject -->
-    <!-- endbuild -->
+<script src="http://localhost:35729/livereload.js?snipver=1"></script>
 
-    <script src="http://localhost:35729/livereload.js?snipver=1"></script>
-
-  </body>
+</body>
 </html>

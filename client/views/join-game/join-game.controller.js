@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bsf')
-  .controller('JoinGameCtrl', function ($scope, Game) {
+  .controller('JoinGameCtrl', function ($scope, Game, $location) {
 
     var vm = this;
 
@@ -10,6 +10,16 @@ angular.module('bsf')
     });
 
     $scope.game = {};
+    var query = new Parse.Query(Game);
+    query.find({
+      success: function (results) {
+        $scope.allGames = results;
+      },
+      error: function (error) {
+        console.log("Game search error! ");
+        $scope.allGames = [];
+      }
+    });
 
     $scope.joinGame = function (form) {
       console.dir($scope.game);
@@ -33,6 +43,14 @@ angular.module('bsf')
         .catch(function (err) {
           console.dir(err.data);
         });
+    }
+
+    $scope.logout = function () {
+      Parse.User.logOut();
+      var currentUser = Parse.User.current();
+      alert("You are logging out!");
+      console.dir("Logged Out - Current User now " + currentUser);
+      $location.path('/login');
     }
 
   });
