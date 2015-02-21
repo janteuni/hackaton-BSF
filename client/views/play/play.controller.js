@@ -3,6 +3,7 @@
 angular.module('bsf')
   .controller('PlayCtrl', function ($scope, Game) {
 
+
     var vm = this;
     $scope.css= 'h1 { color:red }';
     $scope.html = '<h1>TOTOTOTOT</h1>';
@@ -29,7 +30,6 @@ angular.module('bsf')
       matchBrackets: true,
       mode: 'html'
     };
-
 
     function getCss() {
       var insert = "#p1";

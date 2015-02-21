@@ -22,7 +22,12 @@ angular.module('bsf')
               newGame.set("name", data.name);
               newGame.set("type", data.type);
               newGame.set("num_players", data.nb);
-              newGame.set("players", [currentUser]);
+              newGame.set("players", [{
+                player: currentUser,
+                done: false,
+                HTMLData: "",
+                CSSData: ""
+              }]);
               newGame.set("finished", false);
 
               newGame.save(null, {
@@ -46,13 +51,13 @@ angular.module('bsf')
         return deferred.promise;
       },
 
-      join: function (gameName) {
+      join: function (gameId) {
         var deferred = $q.defer();
         var currentUser = Parse.User.current();
         var query = new Parse.Query(Game);
-        query.equalTo("name", gameName);
-        query.find({
+        query.get(gameId, {
           success: function (results) {
+            console.log(results);
             //Check if game exists
             if (results.length > 0) {
               console.log("Found the game! ");
@@ -95,6 +100,7 @@ angular.module('bsf')
         return deferred.promise;
       },
 
+
       validate: function(data, gameName) {
         var deferred = $q.defer();
 
@@ -136,9 +142,26 @@ angular.module('bsf')
           }
         });
         return deferred.promise;
+      },
+
+      getGames: function(){
+        var deferred = $q.defer();
+        var allGames = [];
+
+        var query = new Parse.Query(Game);
+        query.find({
+          success: function (results) {
+            console.log("getGames search ok! ");
+            deferred.resolve(results);
+          },
+          error: function (error) {
+            console.log("getGames search error! ");
+            deferred.reject(error);
+          }
+        });
+        return deferred.promise;
       }
     };
 
   });
 
-[{"CSSData":"","HTMLData":"","done":false,"player":{"__type":"Pointer","className":"_User","objectId":"hCrULM24I6"}},{"__type":"Pointer","className":"_User","objectId":"wW9vFuwMHn"}]

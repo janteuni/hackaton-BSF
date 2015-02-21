@@ -1,11 +1,17 @@
-<textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-model="html"></textarea>
-
-<textarea ui-codemirror ui-codemirror-opts="editorOptions2" ng-model="css"></textarea>
-
-
 <button ng-click="parseAndExecute()">GO</button>
 
 <style id="style"></style>
 <div id="p1"></div>
+
+
+<div class="cb" ng-click="showDetails = ! showDetails">HTLM</div>
+<div class="cb" ng-click="showDetails = ! showDetails">CSS</div>
+
+<div ng-if="showDetails" ng-click="setTab()">
+  <textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-model="html"></textarea>
+</div>
+<div ng-if="!showDetails">
+  <textarea ui-codemirror ui-codemirror-opts="editorOptions2" ng-model="css"></textarea>
+</div>
 
 <button ng-click="validateGame()">VALIDER</button>
