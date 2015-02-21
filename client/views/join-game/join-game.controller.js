@@ -52,4 +52,9 @@ angular.module('bsf')
       Game.getMyCurrentGames(currentUser.id);
     }
 
+    $scope.testGetMyPlayerNumber = function() {
+      var currentUser = Parse.User.current();
+      Game.getMyPlayerNumber(currentUser.id, 'BLOuu7jIT4');
+    }
+
   });

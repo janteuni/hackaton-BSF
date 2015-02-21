@@ -61,7 +61,7 @@ angular.module('bsf')
             if (result) {
               var game = result;
               //check if game is full..
-              if (game.attributes.players.length >= game.attributes.num_players )
+              if (game.attributes.players.length >= game.attributes.num_players)
                 deferred.reject("This game is full! You can't join...");
               else {
                 //check if user is already subscribed...
@@ -98,7 +98,7 @@ angular.module('bsf')
       },
 
 
-      validate: function(data, gameId) {
+      validate: function (data, gameId) {
         var deferred = $q.defer();
 
         //Save my data
@@ -107,7 +107,9 @@ angular.module('bsf')
           success: function (result) {
             if (result) {
               var players = result.attributes.players;
-              var tab = players.map(function (el) { return el.player.id; });
+              var tab = players.map(function (el) {
+                return el.player.id;
+              });
               var index = tab.indexOf(Parse.User.current().id);
               if (index != -1) {
                 players[index].HTMLData = data.html;
@@ -178,18 +180,30 @@ angular.module('bsf')
         return deferred.promise;
       },
 
-      getById: function(id){
+      getMyPlayerNumber: function (userId, gameId) {
         var deferred = $q.defer();
-
         var query = new Parse.Query(Game);
-        query.get(id, {
+        query.get(gameId, {
           success: function (result) {
             if (result) {
               console.log(result);
-                deferred.resolve(result);
+              var found = -1;
+              for (var i = 0; i < result.attributes.players.length; i++) {
+                var thisPlayer = result.attributes.players[i].player;
+                if (thisPlayer.id === userId)
+                  found = i;
+              }
+
+              if (found > -1) {
+                console.log("RESULT: " + found);
+                deferred.resolve(found);
               } else {
+                console.log("RESULT: NOT FOUND");
                 deferred.reject();
               }
+            } else {
+              deferred.reject();
+            }
           },
           error: function (error) {
             deferred.reject(error);
@@ -198,7 +212,27 @@ angular.module('bsf')
         return deferred.promise;
       },
 
-      getByIdAndNotDone: function(id){
+      getById: function (id) {
+        var deferred = $q.defer();
+
+        var query = new Parse.Query(Game);
+        query.get(id, {
+          success: function (result) {
+            if (result) {
+              console.log(result);
+              deferred.resolve(result);
+            } else {
+              deferred.reject();
+            }
+          },
+          error: function (error) {
+            deferred.reject(error);
+          }
+        });
+        return deferred.promise;
+      },
+
+      getByIdAndNotDone: function (id) {
         var deferred = $q.defer();
         var playerId = Parse.User.current().id;
 
@@ -208,7 +242,7 @@ angular.module('bsf')
             for (var i = 0; i < game.attributes.players.length; i++) {
               if (game.attributes.players[i].player.id == playerId && game.attributes.players[i].done == false) {
                 deferred.resolve(game);
-              } else if (game.attributes.players[i].player.id == playerId && game.attributes.players[i].done == true){
+              } else if (game.attributes.players[i].player.id == playerId && game.attributes.players[i].done == true) {
                 deferred.reject("Already done!");
               }
             }
