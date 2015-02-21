@@ -6,7 +6,7 @@
 <form name="form" ng-submit="joinGame(form)" novalidate>
   <div>
     <label for="gameId">Jeu à rejoindre</label>
-    <select ng-model="game.id" id="gameId" ng-options="item.attributes.name for item in allGames"></select>
+    <select ng-model="game.id" id="gameId" ng-options="item.attributes.name for item in openGames"></select>
   </div>
   <button type="submit">Rejoindre ce jeu!</button>
 </form>

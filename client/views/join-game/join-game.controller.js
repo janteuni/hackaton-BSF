@@ -10,13 +10,17 @@ angular.module('bsf')
     });
 
     $scope.game = {};
-    $scope.allGames = [];
+    $scope.openGames = [];
 
     Game.getGames()
       .then(function (allGames) {
         console.log(allGames);
-        $scope.allGames = allGames;
-
+        for (var i = 0; i < allGames.length; i++) {
+          var thisGame = allGames[i];
+          if (thisGame.attributes.players.length < thisGame.attributes.num_players) {
+            $scope.openGames.push(thisGame);
+          }
+        }
       })
       .catch(function (err) {
         console.dir(err.data);
