@@ -67,7 +67,7 @@ angular.module('bsf')
 
               var game = result;
               //check if game is full..
-              if (game.attributes.players.length >= game.attributes.num_players )
+              if (game.attributes.players.length >= game.attributes.num_players)
                 alert("This game is full! You can't join...");
               else {
                 //check if user is already subscribed...
@@ -80,7 +80,7 @@ angular.module('bsf')
                     break;
                   }
                 }
-                if (found){
+                if (found) {
                   console.log("ALREADY PARTICIPATING");
                   alert("You are already participating in this game!");
                 } else {
@@ -106,7 +106,7 @@ angular.module('bsf')
       },
 
 
-      validate: function(data, gameName) {
+      validate: function (data, gameName) {
         var deferred = $q.defer();
 
         //Save my data
@@ -116,7 +116,9 @@ angular.module('bsf')
           success: function (results) {
             if (results.length == 1) {
               var players = results[0].attributes.players;
-              var tab = players.map(function (el) { return el.player.id; });
+              var tab = players.map(function (el) {
+                return el.player.id;
+              });
               var index = tab.indexOf(Parse.User.current().id);
               if (index != -1) {
                 players[index].HTMLData = data.html;
@@ -147,7 +149,7 @@ angular.module('bsf')
         return deferred.promise;
       },
 
-      getGames: function(){
+      getGames: function () {
         var deferred = $q.defer();
         var allGames = [];
 
@@ -165,25 +167,32 @@ angular.module('bsf')
         return deferred.promise;
       },
 
-      getMyCurrentGames: function(userId){
+      getMyCurrentGames: function (userId) {
         var deferred = $q.defer();
         var myCurrentGames = [];
-        var allGames = resultGame.getGames();
-        console.log("allGames");
-        console.log(allGames);
-        for (var i = 0; i < allGames.length; i++) {
-          var thisGame = allGames[i];
-          for (var n = 0; n < thisGame.attributes.players.length; n++) {
-            var thisPlayer = thisGame.attributes.players[n];
-              if (thisPlayer.id === userId) {
-                myCurrentGames.push(thisGame);
-                break;
-              }
-          }
-        }
-        console.log("COooeeeyyyy");
+        resultGame.getGames()
+          .then(function (allGames) {
+            console.log("allGames");
+            console.log(allGames);
+            for (var i = 0; i < allGames.length; i++) {
+              var thisGame = allGames[i];
+              console.log(thisGame);
+              for (var n = 0; n < thisGame.attributes.players.length; n++) {
+                var thisPlayer = thisGame.attributes.players[n];
+                console.dir(thisPlayer);
+                console.log(thisPlayer.id + " " + userId);
+                if (thisPlayer.id === userId) {
+                  myCurrentGames.push(thisGame);
 
-        console.log(myCurrentGames);
+                }
+              }
+            }
+            console.log("myGames");
+            console.log(myCurrentGames);
+          })
+          .catch(function (err) {
+            console.dir(err.data);
+          });
         return deferred.promise;
       }
 
