@@ -55,16 +55,16 @@ angular.module('bsf')
         var currentUser = Parse.User.current();
         var query = new Parse.Query(Game);
         query.get(gameId, {
-          success: function (results) {
-            console.log(results);
+          success: function (result) {
+            console.log(result);
             //Check if game exists
-            if (results.length > 0) {
+            if (result) {
               console.log("Found the game! ");
-              console.log(results[0]);
+              console.log(result);
               console.log("Current user");
               console.log(currentUser);
 
-              var game = results[0];
+              var game = result;
               //check if game is full..
               if (game.attributes.players.length >= game.attributes.num_players )
                 alert("This game is full! You can't join...");
@@ -89,7 +89,7 @@ angular.module('bsf')
                 }
               }
             } else {
-              alert("The game " + gameName + " does not exist");
+              alert("The game " + gameId + " does not exist");
             }
           },
           error: function (error) {

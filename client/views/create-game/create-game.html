@@ -9,7 +9,10 @@
   </div>
   <div>
     <label for="type">Type de jeu</label>
-    <input type="text" id="type" name="type" ng-model="game.type">
+    <select id="type" name="type" ng-model="game.type">
+      <option value="text">Text</option>
+      <option value="image">Image</option>
+    </select>
   </div>
 
   <button type="submit">Créer le jeu!</button>
