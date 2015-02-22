@@ -12,6 +12,16 @@ angular.module('bsf')
       h:"\Balise de titre, le « / » indique la balise fermante.",
       em:"Le texte encadré est en italique.",
       img:"Balise orpheline contenant deux arguments : [src = chemin d'accès de l’image] et [alt = texte alternatif venant décrire l’image si celle-ci ne s’affiche pas ou pour aider les moteurs de recherche à trouver l’image (non obligatoire)]",
+      color:"Cette valeur est un nom de couleur comme blue, black, green, lime, maroon, aqua, silver, fuchsia, yellow, … La couleur peut être codée en RGB (niveau de couleur de rouge, vert, bleu) rgb(50,96,204); Chaque nombre est compris entre 0 et 255.",
+      family:"Indique la police du texte (police1).  Si cette police n’existe pas, le navigateur essaiera la police2 (non obligatoire). Celles-ci peuvent être : Arial, Comic Sans Ms, Courier New, Georgia, Impact, Times New Roman, Verdana, …",
+      weight:"The font-weight property sets how thick or thin characters in text should be displayed.",
+      bg:"Couleur de fond. la valeur de l'attribut est un nom de couleur (voir color).",
+      border:"Applique une bordure. Elle prend 3 arguments : [la largeur de la bordure en pixel], [La couleur de la bordure] et [Le type de bordure (ex : solid, dotted, dashed, groove, inset, double, …)]",
+      margin:"Marge extérieur. Les 4 arguments sont les tailles des marges en pixel (haute, droite, basse, gauche).",
+      padding:"Marge intérieur dont les arguments sont décrits dans «  margin ».",
+      height:"modifie la hauteur de l'attribut selctionné",
+      width:"modifie la largeur de l'attribut selctionné",
+      size:"ajuste la taille de la police",
       div:"Balise conteneur qui peut inclure tous les tags html"};
 
     vm.compiledCss = '';
@@ -35,9 +45,10 @@ angular.module('bsf')
      vm.help = vm.strHelp[str2];
 
     };
-    $scope.insertCSS = function(str)  {
+    $scope.insertCSS = function(str1, str2)  {
 
-      $scope.css += str;
+      $scope.css += str1;
+      vm.help = vm.strHelp[str2];
 
     };
 
