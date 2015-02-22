@@ -65,6 +65,10 @@ header {
 }
 
 
+.container-fluid {
+  padding: 0 !important;
+}
+
 /* RENDER */
 
 #render{
@@ -75,8 +79,7 @@ header {
 
 .head-m {
   background-color: $green;
-  padding-top: 0px;
-  padding-bottom: 50px;
+  padding-bottom: 90px;
   padding-left: 50px;
   text-align: center;
   img {
@@ -98,5 +101,23 @@ header {
   .head-m {
     text-align: center;
     padding-left: 0px;
+  }
+}
+
+.basic-form {
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  input{
+    font-size: 16px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(grey, .5);
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    &:focus {
+      border-bottom: 2px solid $green;
+    }
   }
 }
