@@ -2,15 +2,12 @@
   <img ng-src="assets/images/Logo.png" alt="logo-code-lv1"/>
 </section>
 
-<div>
+<div class="game">
   <ul>
-  <a ng-href="/create-game">Créer un nouveau jeu</a>
-  <a ng-href="/join-game">Rejoindre un nouveau jeu</a>
-<button ng-click="logout()">Log Out</button>
+    <li><a ng-href="/">ENTRAINEMENT</a></li>
+  <li><a ng-href="/game">JOUER</a><span ng-if="myGames.length > 0">{{myGames.length}}</span></li>
+  <li><a ng-href="/library">BIBLIOTHEQUE </a></li>
+    <li><a ng-href="/contact">CONTACT</a></li>
+    <li><button ng-click="logout()">DECONNEXION</button></li>
   </ul>
 </div>
-
-<h1>My Current Games</h1>
-<ul>
-  <li ng-repeat="item in myGames"><a ng-href="/play/{{item.id}}">{{item.attributes.name}}</a></li>
-</ul>

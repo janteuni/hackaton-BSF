@@ -16,6 +16,7 @@ body {
   font-family: 'Quicksand', sans-serif;
   font-size: 16px;
   height: 100%;
+  overflow-y: hidden;
 }
 
 .content {
@@ -174,6 +175,9 @@ float: right;
 
 .padding-t-l {
   padding-top: 36px;
+}
+.bg-green {
+  background-color: #28f449 ;
 }
 
 .padding-t-m {
@@ -349,7 +353,7 @@ select {
  /* GAME */
 .game {
   height: 100%;
-  background-color:  #28f449;
+//  background-color:  #28f449;
 }
 
 .game ul {
@@ -379,4 +383,22 @@ select {
 .game .footer {
 //  background-color: #28f449;
 //  height: 1000px;
+}
+
+/* MY-GAME */
+.gameList {
+  background-color: white;
+}
+
+.gameList li {
+  text-align: left;
+  padding: 5px;
+  padding-left: 20px;
+}
+#gameListMenu {
+  position: absolute;
+  top: 5%;
+  color: white;
+  font-size: 20px;
+  padding-left: 20px;
 }

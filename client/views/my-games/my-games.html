@@ -1,0 +1,6 @@
+<a ng-href="/game" id="gameListMenu"><\MENU/></a>
+<div class="gameList game">
+<ul>
+  <li ng-repeat="item in myGames"><a ng-href="/play/{{item.id}}">{{item.attributes.name}}</a></li>
+</ul>
+</div>
