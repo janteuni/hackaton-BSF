@@ -1,6 +1,3 @@
-<div style="height:100%;">
-<button ng-click="parseAndExecute()">Aperçu</button>
-
 <style id="style">
   {{ vm.compiledCss }}
 </style>
@@ -8,38 +5,55 @@
 <div class="my-preview"></div>
 
 
-
-
 <div class="sink">
 
 <div ng-class="{cb: vm.tab==2, active: vm.tab==1}" ng-click="vm.tab = 1">HTML</div>
 <div ng-class="{cb: vm.tab==1, active: vm.tab==2}"  ng-click="vm.tab = 2">CSS</div>
 
-
+  <button class="ap" ng-click="parseAndExecute()">Aperçu&nbsp;&nbsp;<span class="ion-refresh"></span></button>
 <div ng-show="vm.tab == 1">
-  <textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-model="html" ng-click=insert()></textarea>
+  <textarea  ui-codemirror ui-codemirror-opts="editorOptions" ng-model="html" caret="2" ng-click=insert()></textarea>
 </div>
 
 <div ng-show="vm.tab == 2">
   <textarea ui-codemirror ui-codemirror-opts="editorOptions2" ng-model="css"></textarea>
 </div>
+  <div class="tooltip">{{ vm.help }}</div>
+  <div ng-show="vm.tab == 1">
 
     <div class=" dashboard">
-      <div class="btn" ng-click="insert('<h1></h1>')">h1</div>
-      <div class="btn" ng-click="insert('<h2></h2>')">h2</div>
-      <div class="btn" ng-click="insert('<h3></h3>')">h3</div>
-      <div class="btn" ng-click="insert('<em></em>')">em</div>
-      <div class="btn" ng-click="insert('<div></div>')">div</div>
-      <div class="btn" ng-click="insert('<p></p>')">p</div>
-      <div class="btn" ng-click="insert('<img src="">')">img</div>
-      <div class="btn" ng-click="insert('<br >')">br </div>
+      <div class="btn"  ng-click="insertHTML('<h1></h1>', 'h')">h1</div>
+      <div class="btn" ng-click="insertHTML('<h2></h2>', 'h')">h2</div>
+      <div class="btn" ng-click="insertHTML('<h3></h3>', 'h')">h3</div>
+      <div class="btn" ng-click="insertHTML('<em></em>', 'em')">em</div>
+      <div class="btn" ng-click="insertHTML('<div></div>', 'div')">div</div>
+      <div class="btn" ng-click="insertHTML('<p></p>', 'p')">p</div>
+      <div class="btn" ng-click="insertHTML('<img src=&#34;&#34;>', 'img')">img</div>
+      <div class="btn" ng-click="insertHTML('<br &#47>', 'br')">br </div>
     </div>
+  </div>
+
+  <div ng-show="vm.tab == 2">
+
+    <div class=" dashboard">
+      <div class="btn" ng-click="insertCSS('color:red;')">color</div>
+      <div class="btn" ng-click="insertCSS('border-style: solid; border-color:pink; border-width:1px;')">border</div>
+      <div class="btn" ng-click="insertCSS('width: 100%;')">width</div>
+      <div class="btn" ng-click="insertCSS('heigth: 50px;')">height</div>
+      <div class="btn" ng-click="insertCSS('margin: 10px;')">margin</div>
+      <div class="btn" ng-click="insertCSS('background-color: yellow;')">BG color</div>
+      <div class="btn" ng-click="insertCSS('padding: 20px;')">padding</div>
+      <div class="btn" ng-click="insertCSS('font-weight: normal;')">font-weight</div>
+      <div class="btn" ng-click="insertCSS('font-size: 100%;')">font-size</div>
+      <div class="btn" ng-click="insertCSS('font-family: &#34;Times New Roman&#34;, Georgia, Serif;')">font-family</div>
+    </div>
+  </div>
 
 <div class="valDash">
   <div class="btnVal" ng-click="validateGame()">valider</div>
   </div>
 </div>
-</div>
+
 <!-- J'ai modifier un peu le code pour la balise #p1 => c'est devenu une balide class="my-preview" a laquelle j'ajoute des le debut un id specifique selon
 l'index du joueur en abse de donnee
 mais j'ai l'impression que j'ai tout peter tes boutons... c'est byzar-->

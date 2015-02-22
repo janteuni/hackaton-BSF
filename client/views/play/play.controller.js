@@ -7,7 +7,15 @@ angular.module('bsf')
 
     var vm = this;
 
+    vm.strHelp = {p:"\Le texte entre la balise ouvrante \<p> et la balise fermante </p> est un paragraphe.",
+      br:"« br » est une balise orpheline : elle ne possède pas de balise de fin. Elle se trouve obligatoirement dans un paragraphe.",
+      h:"\Balise de titre, le « / » indique la balise fermante.",
+      em:"Le texte encadré est en italique.",
+      img:"Balise orpheline contenant deux arguments : [src = chemin d'accès de l’image] et [alt = texte alternatif venant décrire l’image si celle-ci ne s’affiche pas ou pour aider les moteurs de recherche à trouver l’image (non obligatoire)]",
+      div:"Balise conteneur qui peut inclure tous les tags html"};
+
     vm.compiledCss = '';
+    vm.help = "aide";
 
     vm.numPlayer = 0;
 
@@ -21,13 +29,19 @@ angular.module('bsf')
       .catch(function (err) {
         console.dir(err.data);
       });
-    $scope.insert = function(str)  {
+    $scope.insertHTML = function(str1, str2)  {
 
-      $scope.html += str;
+      $scope.html += str1;
+     vm.help = vm.strHelp[str2];
+
+    };
+    $scope.insertCSS = function(str)  {
+
+      $scope.css += str;
 
     };
 
-    $scope.css= 'h1 { color:red } .toto { background-color:blue }';
+    $scope.css= 'h1 { color:red } #toto { background-color: yellow;heigth: 50px;}';
     $scope.html = '<div id="toto"><h1>TOTOTOTOTO</h1></div>';
 
 
@@ -99,3 +113,4 @@ angular.module('bsf')
       };
 
     });
+
