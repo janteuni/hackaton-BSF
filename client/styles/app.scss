@@ -15,6 +15,7 @@ body {
   padding-top: $nav + px;
   font-family: 'Quicksand', sans-serif;
   height: 100%;
+  overflow-y: hidden;
 }
 
 .content {
