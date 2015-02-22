@@ -252,12 +252,11 @@ angular.module('bsf')
 
       getById: function (id) {
         var deferred = $q.defer();
-
+        console.log(id);
         var query = new Parse.Query(Game);
         query.get(id, {
           success: function (result) {
             if (result) {
-              console.log(result);
               deferred.resolve(result);
             } else {
               deferred.reject();

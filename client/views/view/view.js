@@ -9,7 +9,7 @@ angular.module('bsf')
         controllerAs: 'vm',
         resolve: {
           currentGame: function (Game, $route) {
-            return Game.getById($route.current.params.game);
+            return Game.getById($route.current.params.id);
           }
         }
       });

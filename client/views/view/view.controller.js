@@ -12,13 +12,20 @@ angular.module('bsf')
     vm.currentGame = currentGame;
     vm.compiledCss = "";
 
-    function joinCss() {
-      var css = "";
-      for (var i = 0; currentGame.attributes.players.length ;i++) {
-        css += currentGame.attributes.players[i].CSSData;
-      }
-      vm.compiledCss = css;
+    console.log(currentGame);
+
+    var css = "";
+    for (var i = 0; i < currentGame.attributes.players.length; i++) {
+      console.log(currentGame.attributes.players[i]);
+      css += currentGame.attributes.players[i].CSSData;
     }
+    vm.compiledCss = css;
+
+    var html = "";
+    for (var i = 0; i < currentGame.attributes.players.length; i++) {
+      html += '<div id="p' + i + '">' + currentGame.attributes.players[i].HTMLData + "</div>";
+    }
+    $("#render").html(html);
 
 
   });
