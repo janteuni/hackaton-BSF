@@ -10,6 +10,17 @@ angular.module('bsf')
 
     $scope.css= 'h1 { color:red }';
     $scope.html = '<h1>TOTOTOTOTO</h1>';
+    $scope.numPlayer = 0;
+
+    Game.getMyPlayerNumber(Parse.User.current().id, $route.current.params.game)
+      .then(function (num) {
+        $scope.numPlayer = num;
+        var id = "p" + num;
+        $( ".my-preview" ).attr('id', id);
+      })
+      .catch(function (err) {
+        console.dir(err.data);
+      });
 
     vm.tab = 1;
 
@@ -56,7 +67,7 @@ angular.module('bsf')
 
     $scope.parseAndExecute = function() {
       vm.compiledCss = getCss();
-      $( "#p1" ).html($scope.html);
+      $( "#p" + $scope.numPlayer ).html($scope.html);
     };
 
 

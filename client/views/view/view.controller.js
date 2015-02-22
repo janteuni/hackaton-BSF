@@ -12,5 +12,13 @@ angular.module('bsf')
     vm.currentGame = currentGame;
     vm.compiledCss = "";
 
+    function joinCss() {
+      var css = "";
+      for (var i = 0; currentGame.attributes.players.length ;i++) {
+        css += currentGame.attributes.players[i].CSSData;
+      }
+      vm.compiledCss = css;
+    }
+
 
   });
