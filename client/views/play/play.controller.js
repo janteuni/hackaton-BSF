@@ -15,6 +15,7 @@ angular.module('bsf')
         $scope.numPlayer = num;
         var id = "p" + num;
         $( ".my-preview" ).attr('id', id);
+
       })
       .catch(function (err) {
         console.dir(err.data);
