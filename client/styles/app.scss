@@ -318,6 +318,7 @@ header {
   bottom: 0;
   width:100%;
   padding-bottom: 7px;
+  z-index: -100;
 }
 
 .active {
@@ -476,18 +477,72 @@ select {
   background-color: $green;
   top: 0;
   left: 0;
+  .title {
+    position: relative;
+    height: 60%;
+  }
   h1 {
+    position: absolute;
+    bottom: 0;
     font-size: 32px;
     text-transform: uppercase;
     margin-left: 20px;
   }
   p {
-    padding: 20px;
     color: rgba(grey, .7);
     font-size: 21px;
+  }
+  box-shadow: 2px 1px 10px rgba(grey, .4);
+  .description{
+    height: 40%;
+    background-color: white;
+    padding: 20px;
+    padding-bottom: 65px;
+    text-transform: uppercase;
+    .ico {
+      color: $green;
+      font-size: 36px;
+      float: right;
+    }
+    .none {
+      float: none;
+    }
+  }
+  &.ng-show
+  {
+    -webkit-animation-name: trUp;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(.26, 1.46, .46, 1.07);
+    -webkit-animation-duration: 500ms;
+  }
+  &.ng-hide{
+    -webkit-animation-name: trDown;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(.26, 1.46, .46, 1.07);
+    -webkit-animation-duration: 800ms;
   }
 }
 
 .training {
-  padding-left: 300px;
+
+ width:800px;
+  //padding-left: 300px;
+}
+
+@-webkit-keyframes trUp {
+  0% {
+    -webkit-transform: translateX(-400px);;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes trDown {
+  0% {
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-460px);
+  }
 }
