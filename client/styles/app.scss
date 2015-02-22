@@ -30,104 +30,7 @@ button {
   border: none;
 }
 
-<<<<<<< HEAD
-=======
-a {
-  cursor: pointer;
-  outine: none;
-  text-decoration: none;
-  color: rgba(grey, .7);
-  &:hover {
-    outine: none;
-    text-decoration: none;
-    color: rgba(grey, .7);
-  }
-}
 
-.my-preview {
-  height: 70%;
-}
-
-.agame {
-  height: 100%;
-}
-
-.cb {
-  list-style: none;
-  padding: 10px;
-  display: inline-block;
-  background-color: #000;
-  color: #FFF;
-  border: 1px solid black;
-  border-radius-top: 3px;
-}
-
-.cb:hover {
-  background-color: #4a4a4a;
-  color: #FFF;
-}
-
-.sink {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding-bottom: 7px;
-}
-
-.active {
-  list-style: none;
-  padding: 10px;
-  display: inline-block;
-  color: #FFF;
-  border-radius-top: 3px;
-  background-color: $green;
-}
-
-.btn {
-  text-align: center;
-  padding: 5px;
-  display: inline-block;
-  border: 1px solid black;
-  margin-right: 2px;
-  margin-left: 2px;
-  padding-top: 5px;
-}
-
-.btnVal {
-  float: right;
-
-  padding-left: 20px;
-  padding-right: 20px;
-  color: #ffffff;
-  background: $green;
-}
-
-.valDash {
-  padding-top: 5px;
-  padding-right: 20px;
-  padding-left: 20px;
-  // padding-bottom: 20px;
-  width: 100%;
-}
-
-.dashboard {
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
-  width: 100%;
-  display: -webkit-flex; /* Safari */
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.dashboard div {
-  min-width: 60px;
-  -webkit-flex: 1; /* Safari 6.1+ */
-  -ms-flex: 1; /* IE 10 */
-  flex: 1;
-}
-
->>>>>>> 7790c6eba6a13a785ed3c429c87faf60823a49ac
 /* GENERAL */
 
 .font-m {
@@ -362,8 +265,6 @@ header {
     }
   }
 }
-
-
 
 /* PLAY */
 
