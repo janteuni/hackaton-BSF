@@ -6,6 +6,7 @@ $green: #28f449;
 html {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 body {
@@ -13,6 +14,11 @@ body {
   padding: 0;
   padding-top: $nav + px;
   font-family: 'Quicksand', sans-serif;
+  height: 100%;
+}
+
+.content {
+  height: 100%;
 }
 
 button {
@@ -233,4 +239,38 @@ header {
       border-bottom: 2px solid $green;
     }
   }
+}
+ /* GAME */
+.game {
+  height: 100%;
+  background-color:  #28f449;
+}
+
+.game ul {
+  background-color: white;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game li {
+  border-bottom: 1px solid rgba(grey, .7);
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+}
+
+.game li:last-child {
+  border-bottom: none;
+}
+.game span {
+  margin-left: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #28f449;
+  color: white;
+}
+.game .footer {
+//  background-color: #28f449;
+//  height: 1000px;
 }
