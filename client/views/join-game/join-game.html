@@ -1,16 +1,19 @@
-<!--<ul>-->
-  <!--<li ng-repeat="item in allGames">-->
-    <!--{{item}}-->
-  <!--</li>-->
-<!--</ul>-->
-<form name="form" ng-submit="joinGame(form)" novalidate>
-  <div>
-    <label for="gameId">Jeu à rejoindre</label>
-    <select ng-model="game.id" id="gameId" ng-options="item.attributes.name for item in openGames"></select>
-  </div>
-  <button type="submit">Rejoindre ce jeu!</button>
-</form>
+<div class="game bg-green">
+  <section class="raw head-m">
+    <img ng-src="assets/images/Logo.png" alt="logo-code-lv1"/>
+  </section>
+  <section class="row">
+    <div class="basic-form pointer"><a ng-href="/game" class="c-white"><\RETOUR></a></div>
+  </section>
 
+<div class="row b-white padding-t-l">
+  <form name="form" ng-submit="joinGame(form)" class="basic-form" novalidate>
+    <div class="margin-b-l margin-auto">
+      <label for="gameId">Jeux à rejoindre</label>
+      <select ng-model="game.id" id="gameId" ng-options="item.attributes.name for item in openGames"></select>
+    </div>
+    <button type="submit" class="btn-green margin-b-l font-s btn-big">REJOINDRE ! <span class="ion-android-arrow-forward font-s"></span></button>
+  </form>
 
-<button ng-click="testGetMyCurrentGame()">Get my current games</button>
-<button ng-click="testGetMyPlayerNumber()">Get my player number</button>
+</div>
+</div>

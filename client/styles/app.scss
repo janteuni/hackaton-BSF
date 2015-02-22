@@ -6,13 +6,21 @@ $green: #28f449;
 html {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 body {
-  margin:0;
+  margin: 0;
   padding: 0;
   padding-top: $nav + px;
   font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.content {
+  height: 100%;
 }
 
 
@@ -22,6 +30,104 @@ button {
   border: none;
 }
 
+<<<<<<< HEAD
+=======
+a {
+  cursor: pointer;
+  outine: none;
+  text-decoration: none;
+  color: rgba(grey, .7);
+  &:hover {
+    outine: none;
+    text-decoration: none;
+    color: rgba(grey, .7);
+  }
+}
+
+.my-preview {
+  height: 70%;
+}
+
+.agame {
+  height: 100%;
+}
+
+.cb {
+  list-style: none;
+  padding: 10px;
+  display: inline-block;
+  background-color: #000;
+  color: #FFF;
+  border: 1px solid black;
+  border-radius-top: 3px;
+}
+
+.cb:hover {
+  background-color: #4a4a4a;
+  color: #FFF;
+}
+
+.sink {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 7px;
+}
+
+.active {
+  list-style: none;
+  padding: 10px;
+  display: inline-block;
+  color: #FFF;
+  border-radius-top: 3px;
+  background-color: $green;
+}
+
+.btn {
+  text-align: center;
+  padding: 5px;
+  display: inline-block;
+  border: 1px solid black;
+  margin-right: 2px;
+  margin-left: 2px;
+  padding-top: 5px;
+}
+
+.btnVal {
+  float: right;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #ffffff;
+  background: $green;
+}
+
+.valDash {
+  padding-top: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  // padding-bottom: 20px;
+  width: 100%;
+}
+
+.dashboard {
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 100%;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard div {
+  min-width: 60px;
+  -webkit-flex: 1; /* Safari 6.1+ */
+  -ms-flex: 1; /* IE 10 */
+  flex: 1;
+}
+
+>>>>>>> 7790c6eba6a13a785ed3c429c87faf60823a49ac
 /* GENERAL */
 
 .font-m {
@@ -48,7 +154,12 @@ button {
   margin-right: 12px;
 }
 
-.text-left{
+.margin-auto {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.text-left {
   text-align: left;
 }
 
@@ -64,15 +175,43 @@ button {
   color: rgba(grey, .7);
 }
 
+.c-white {
+  color: white !important;
+}
 
+.b-white {
+  background-color: white;
+}
+
+.padding-t-l {
+  padding-top: 36px;
+}
+
+.bg-green {
+  background-color: #28f449;
+}
+
+.padding-t-m {
+  padding-top: 24px;
+}
+
+.center {
+  width: 50%;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.pointer {
+  cursor: pointer;
+}
 
 /* HEADER */
 
 header {
   position: absolute;
   top: 0;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   height: $nav + px;
   background-color: $green;
   padding-top: 20px;
@@ -80,7 +219,6 @@ header {
     color: white;
   }
 }
-
 
 .container-fluid {
   padding: 0 !important;
@@ -93,7 +231,7 @@ header {
 
 /* RENDER */
 
-#render{
+#render {
   width: 100%;
 }
 
@@ -105,7 +243,7 @@ header {
   text-align: center;
   img {
     width: 50%;
-    min-width: 350px;
+    min-width: 300px;
     max-width: 400px;
   }
 }
@@ -115,26 +253,39 @@ header {
   color: white;
   font-size: 16px;
   .nav-1 {
+    color: white;
     position: relative;
     text-align: right;
     padding-right: 100px;
     .i-tri {
       padding-right: 41px;
     }
+    &:hover {
+      font-weight: bolder;
+    }
   }
   .nav-2 {
+    color: white;
     position: relative;
     padding-left: 100px;
     text-align: left;
     .i-tri {
       padding-left: 41px;
     }
+    &:hover {
+      font-weight: bolder;
+    }
   }
   .i-tri {
     height: 24px;
     font-size: 30px;
-    color: white;
+    color: transparent;
   }
+}
+
+.log-or {
+  max-width: 410px;
+  margin: 0 auto;
 }
 
 .btn-green {
@@ -147,6 +298,19 @@ header {
   }
 }
 
+.btn-big {
+  width: 100%;
+  text-align: center;
+}
+
+.triActive {
+  color: white !important;
+}
+
+.triNotActive {
+  color: transparent;
+}
+
 .bordered {
   height: 15px;
   border-bottom: 1px solid rgba(grey, .5);
@@ -155,6 +319,9 @@ header {
 @media screen and (max-width: 400px) {
   .head-m {
     text-align: center;
+  }
+  .basic-form {
+    padding: 20px;
   }
 }
 
@@ -181,7 +348,8 @@ header {
   margin: 0 auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  input{
+  max-width: 410px;
+  input {
     font-size: 16px;
     outline: none;
     border: none;
@@ -194,6 +362,7 @@ header {
     }
   }
 }
+
 
 
 /* PLAY */
@@ -294,7 +463,72 @@ header {
 
 .dashboard div {
   min-width: 60px;
-  -webkit-flex: 1;  /* Safari 6.1+ */
-  -ms-flex: 1;  /* IE 10 */
+  -webkit-flex: 1; /* Safari 6.1+ */
+  -ms-flex: 1; /* IE 10 */
   flex: 1;
+}
+select {
+  font-size: 16px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(grey, .5);
+  padding: 10px;
+  width: 200px;
+  height: 40px
+}
+
+/* GAME */
+.game {
+  height: 100%;
+  //  background-color:  #28f449;
+}
+
+.game ul {
+  background-color: white;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game li {
+  border-bottom: 1px solid rgba(grey, .7);
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+}
+
+.game li:last-child {
+  border-bottom: none;
+}
+
+.game span {
+  margin-left: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #28f449;
+  color: white;
+}
+
+.game .footer {
+  //  background-color: #28f449;
+  //  height: 1000px;
+}
+
+/* MY-GAME */
+#gameList {
+  text-align: center;
+}
+
+.gameList li {
+  text-align: left;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+#gameListMenu {
+  position: absolute;
+  top: 5%;
+  color: white;
+  font-size: 20px;
+  padding-left: 20px;
 }

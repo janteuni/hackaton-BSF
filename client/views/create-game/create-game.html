@@ -1,19 +1,27 @@
-<form name="form" ng-submit="createGame(form)"  novalidate>
-  <div>
-    <label for="name">Nom</label>
-    <input type="text" id="name" name="name" placeholder="MyAwesomeGame" ng-model="game.name">
-  </div>
-  <div>
-    <label for="nb">Nombre de joueurs</label>
-    <input type="number" id="nb" name="nb" ng-model="game.nb">
-  </div>
-  <div>
-    <label for="type">Type de jeu</label>
-    <select id="type" name="type" ng-model="game.type">
-      <option value="text">Text</option>
-      <option value="image">Image</option>
-    </select>
-  </div>
+<div class="game bg-green">
+  <section class="raw head-m">
+    <img ng-src="assets/images/Logo.png" alt="logo-code-lv1"/>
+  </section>
+  <section class="row">
+      <div class="basic-form pointer"><a ng-href="/game" class="c-white"><\RETOUR></a></div>
+  </section>
+  <div class="row b-white padding-t-l">
+    <form name="form" class="basic-form" ng-submit="createGame(form)" novalidate>
+      <div>
+        <input type="text" id="name" name="name" placeholder="nom de la partie" ng-model="game.name">
+      </div>
+      <div>
+        <input type="number" placeholder="nombre de joueurs" id="nb" name="nb" ng-model="game.nb">
+      </div>
+      <div class="padding-t-m">
+        <label for="type" class="c-grey">Type de partie</label>
+        <select id="type" name="type" ng-model="game.type">
+          <option value="text">Texte</option>
+          <option value="image">Image</option>
+        </select>
+      </div>
 
-  <button type="submit">Créer le jeu!</button>
-</form>
+      <button type="submit" class="btn-green btn-big font-s margin-t-m margin-b-l">CRÉER <span class="ion-android-arrow-forward font-s"></span></button>
+    </form>
+  </div>
+</div>

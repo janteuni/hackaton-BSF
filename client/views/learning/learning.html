@@ -1,0 +1,17 @@
+<div class="game bg-green">
+  <section class="raw head-m">
+    <img ng-src="assets/images/Logo.png" alt="logo-code-lv1"/>
+  </section>
+  <section class="row">
+    <div class="basic-form pointer"><a ng-href="/" class="c-white"><\RETOUR></a></div>
+  </section>
+
+  <div class="row b-white padding-t-l">
+    <div class="gameList basic-form">
+      <ul>
+        <li class="pointer" ng-repeat="item in vm.list"><a  ng-href="/practice/{{item}}">{{item}}</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>

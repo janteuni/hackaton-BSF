@@ -190,6 +190,29 @@ angular.module('bsf')
         return deferred.promise;
       },
 
+      getMyFinishedGames: function (userId) {
+        var deferred = $q.defer();
+        var myCurrentGames = [];
+        resultGame.getGames()
+          .then(function (allGames) {
+            for (var i = 0; i < allGames.length; i++) {
+              var thisGame = allGames[i];
+              for (var n = 0; n < thisGame.attributes.players.length; n++) {
+                var thisPlayer = thisGame.attributes.players[n].player;
+                if (thisPlayer.id === userId && thisGame.attributes.players[n].done == true) {
+                  myCurrentGames.push(thisGame);
+                }
+              }
+            }
+            deferred.resolve(myCurrentGames);
+          })
+          .catch(function (err) {
+            console.dir(err.data);
+            deferred.reject();
+          });
+        return deferred.promise;
+      },
+
       getAvailableGames: function () {
         var deferred = $q.defer();
         var myCurrentGames = [];
