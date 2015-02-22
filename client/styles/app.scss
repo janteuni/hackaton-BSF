@@ -4,7 +4,8 @@ $green: #28f449;
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700);
 
 body {
-  padding: $nav + px;
+  padding: 0;
+  padding-top: $nav + px;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -68,4 +69,34 @@ header {
 
 #render{
   width: 100%;
+}
+
+/* LOGIN */
+
+.head-m {
+  background-color: $green;
+  padding-top: 0px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+  text-align: center;
+  img {
+    width: 50%;
+    min-width: 350px;
+    max-width: 400px;
+  }
+}
+
+.nav-login {
+  background-color: $green;
+  color: white;
+  div {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .head-m {
+    text-align: center;
+    padding-left: 0px;
+  }
 }

@@ -9,11 +9,11 @@ angular.module('bsf')
 
     vm.compiledCss = '';
 
-    $scope.numPlayer = 0;
+    vm.numPlayer = 0;
 
     Game.getMyPlayerNumber(Parse.User.current().id, $route.current.params.game)
       .then(function (num) {
-        $scope.numPlayer = num;
+        vm.numPlayer = num;
         var id = "p" + num;
         $( ".my-preview" ).attr('id', id);
 
@@ -21,7 +21,6 @@ angular.module('bsf')
       .catch(function (err) {
         console.dir(err.data);
       });
-    
     $scope.insert = function(str)  {
 
       $scope.html += str;
@@ -54,7 +53,7 @@ angular.module('bsf')
     };
 
     function getCss() {
-      var insert = "#p1";
+      var insert =  "#p" + vm.numPlayer;
 
       var regexp = /\S+(?= {)/g;
         var match, matches = [];
@@ -77,7 +76,7 @@ angular.module('bsf')
 
       $scope.parseAndExecute = function() {
         vm.compiledCss = getCss();
-        $( "#p" + $scope.numPlayer ).html($scope.html);
+        $( "#p" + vm.numPlayer ).html($scope.html);
       };
 
 
