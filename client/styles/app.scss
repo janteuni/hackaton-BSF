@@ -317,6 +317,7 @@ header {
   bottom: 0;
   width:100%;
   padding-bottom: 7px;
+  z-index: -100;
 }
 
 .active {
@@ -473,5 +474,7 @@ select {
 }
 
 .training {
-  padding-left: 300px;
+
+ width:800px;
+  //padding-left: 300px;
 }
