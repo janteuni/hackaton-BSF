@@ -27,6 +27,18 @@ button {
   border: none;
 }
 
+a {
+  cursor: pointer;
+  outine: none;
+  text-decoration: none;
+  color: rgba(grey, .7);
+  &:hover {
+    outine: none;
+    text-decoration: none;
+    color: rgba(grey, .7);
+  }
+}
+
 .my-preview {
   height:70%;
 }
@@ -48,6 +60,14 @@ button {
   color: #FFF;
 }
 
+
+.sink{
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  padding-bottom: 7px;
+}
+
 .active {
   list-style: none;
   padding: 10px;
@@ -58,14 +78,46 @@ button {
 }
 
 .btn {
+  text-align: center;
   padding: 5px;
   display:inline-block;
   border: 1px solid black;
-  border-radius: 3px;
+  margin-right: 2px;
+  margin-left: 2px;
+  padding-top: 5px;
+}
+.btnVal{
+float: right;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #ffffff;
+  background: $green;
+}
+
+.valDash{
+  padding-top: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+ // padding-bottom: 20px;
+  width: 100%;
 }
 
 .dashboard {
-  margin-top: 50px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 100%;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard div {
+  min-width: 60px;
+  -webkit-flex: 1;  /* Safari 6.1+ */
+  -ms-flex: 1;  /* IE 10 */
+  flex: 1;
 }
 
 /* GENERAL */
@@ -110,6 +162,9 @@ button {
   color: rgba(grey, .7);
 }
 
+.padding-t-l {
+  padding-top: 36px;
+}
 
 
 /* HEADER */
@@ -151,7 +206,7 @@ header {
   text-align: center;
   img {
     width: 50%;
-    min-width: 350px;
+    min-width: 300px;
     max-width: 400px;
   }
 }
@@ -161,26 +216,39 @@ header {
   color: white;
   font-size: 16px;
   .nav-1 {
+    color: white;
     position: relative;
     text-align: right;
     padding-right: 100px;
     .i-tri {
       padding-right: 41px;
     }
+    &:hover{
+      font-weight: bolder;
+    }
   }
   .nav-2 {
+    color: white;
     position: relative;
     padding-left: 100px;
     text-align: left;
     .i-tri {
       padding-left: 41px;
     }
+    &:hover{
+      font-weight: bolder;
+    }
   }
   .i-tri {
     height: 24px;
     font-size: 30px;
-    color: white;
+    color: transparent;
   }
+}
+
+.log-or {
+  max-width: 410px;
+  margin: 0 auto;
 }
 
 .btn-green {
@@ -191,6 +259,14 @@ header {
   &:hover, &:active {
     background-color: rgba($green, .8);
   }
+}
+
+.triActive {
+   color: white !important;
+ }
+
+.triNotActive {
+  color: transparent;
 }
 
 .bordered {
@@ -227,6 +303,7 @@ header {
   margin: 0 auto;
   padding-top: 10px;
   padding-bottom: 10px;
+  max-width: 410px;
   input{
     font-size: 16px;
     outline: none;

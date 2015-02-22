@@ -9,6 +9,8 @@ angular.module('bsf')
       name: 'LoginCtrl'
     });
 
+    vm.select = true;
+
     $scope.user = {};
 
     $scope.logIn = function (form) {
