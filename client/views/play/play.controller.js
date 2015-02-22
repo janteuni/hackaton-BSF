@@ -2,49 +2,25 @@
 
 angular.module('bsf')
 
-  .controller('PlayCtrl', function ($scope, Game, $location, currentGame, $route) {
+.controller('PlayCtrl', function ($scope, Game, $location, currentGame, $route) {
 
-    var vm = this;
+  var vm = this;
 
-    vm.compiledCss = '';
+  vm.compiledCss = '';
 
-    $scope.numPlayer = 0;
+  $scope.numPlayer = 0;
 
-    Game.getMyPlayerNumber(Parse.User.current().id, $route.current.params.game)
-      .then(function (num) {
-        $scope.numPlayer = num;
-        var id = "p" + num;
-        $( ".my-preview" ).attr('id', id);
-      })
-      .catch(function (err) {
-        console.dir(err.data);
-      });
+  Game.getMyPlayerNumber(Parse.User.current().id, $route.current.params.game)
+  .then(function (num) {
+    $scope.numPlayer = num;
+    var id = "p" + num;
+    $( ".my-preview" ).attr('id', id);
+  })
+  .catch(function (err) {
+    console.dir(err.data);
+  });
 
-    function insertAtCursor(myField, myValue) {
-      //IE support
-      if (document.selection) {
-        myField.focus();
-        var sel = document.selection.createRange();
-        sel.text = myValue;
-      }
-      //MOZILLA and others
-      else if (myField.selectionStart || myField.selectionStart == '0') {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
-        myField.value = myField.value.substring(0, startPos)
-        + myValue
-        + myField.value.substring(endPos, myField.value.length);
-        myField.selectionStart = startPos + myValue.length;
-        myField.selectionEnd = startPos + myValue.length;
-      } else {
-        myField.value += myValue;
-      }
-    }
-
-    function addtext() {
-      var $t = $(this);
-      insertAtCursor(this, '<h1></h1>');
-    }
+  
     $scope.insert = function(str)  {
 
       $scope.html += str;
@@ -80,46 +56,46 @@ angular.module('bsf')
       var insert = "#p1";
 
       var regexp = /\S+(?= {)/g;
-      var match, matches = [];
+        var match, matches = [];
 
-      while ((match = regexp.exec($scope.css)) != null) {
-        matches.push(match.index);
+        while ((match = regexp.exec($scope.css)) != null) {
+          matches.push(match.index);
+        }
+
+        var finalCss = $scope.css;
+        var i = 0;
+        matches.map(function(pos) {
+
+          pos = pos + (5 * i);
+          var css = [finalCss.slice(0, pos), insert, finalCss.slice(pos)].join(' ');
+          finalCss = css;
+          i++;
+        });
+        return finalCss;
       }
 
-      var finalCss = $scope.css;
-      var i = 0;
-      matches.map(function(pos) {
-
-        pos = pos + (5 * i);
-        var css = [finalCss.slice(0, pos), insert, finalCss.slice(pos)].join(' ');
-        finalCss = css;
-        i++;
-      });
-      return finalCss;
-    }
-
-    $scope.parseAndExecute = function() {
-      vm.compiledCss = getCss();
-      $( "#p" + $scope.numPlayer ).html($scope.html);
-    };
-
-
-    $scope.validateGame = function () {
-
-      var data = {
-        'css': getCss(),
-        'html' : $scope.html
+      $scope.parseAndExecute = function() {
+        vm.compiledCss = getCss();
+        $( "#p" + $scope.numPlayer ).html($scope.html);
       };
 
-      var gameId = $route.current.params.game;
 
-      Game.validate(data, gameId)
+      $scope.validateGame = function () {
+
+        var data = {
+          'css': getCss(),
+          'html' : $scope.html
+        };
+
+        var gameId = $route.current.params.game;
+
+        Game.validate(data, gameId)
         .then(function () {
           $location.path('/');
         })
         .catch(function (err) {
           console.dir(err.data);
         });
-    };
+      };
 
-  });
+    });
