@@ -52,8 +52,8 @@ angular.module('bsf')
 
     };
 
-    $scope.css= 'h1 { color:red } #toto { background-color: yellow;heigth: 50px;}';
-    $scope.html = '<div id="toto"><h1>TOTOTOTOTO</h1></div>';
+    $scope.css= '';
+    $scope.html = '';
 
 
     vm.tab = 1;
