@@ -10,20 +10,25 @@
 </section>
 <section class="training">
   <style id="style">
-    {{ vm.compiledCss }}
+    {
+    {
+      vm . compiledCss
+    }
+    }
   </style>
 
   <div class="my-preview"></div>
 
 
   <div class="sink">
+    <div class="tabs">
+      <div ng-class="{cb: vm.tab==2, active: vm.tab==1}" ng-click="vm.tab = 1">HTML</div>
+      <div ng-class="{cb: vm.tab==1, active: vm.tab==2}" ng-click="vm.tab = 2">CSS</div>
 
-    <div ng-class="{cb: vm.tab==2, active: vm.tab==1}" ng-click="vm.tab = 1">HTML</div>
-    <div ng-class="{cb: vm.tab==1, active: vm.tab==2}"  ng-click="vm.tab = 2">CSS</div>
-
-    <button class="ap" ng-click="parseAndExecute()">Aperçu&nbsp;&nbsp;<span class="ion-refresh"></span></button>
+      <button class="ap" ng-click="parseAndExecute()">Aperçu&nbsp;&nbsp;<span class="ion-refresh"></span></button>
+    </div>
     <div ng-show="vm.tab == 1">
-      <textarea  ui-codemirror ui-codemirror-opts="editorOptions" ng-model="html" caret="2" ng-click=insert()></textarea>
+      <textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-model="html" caret="2" ng-click=insert()></textarea>
     </div>
 
     <div ng-show="vm.tab == 2">
@@ -33,14 +38,14 @@
     <div ng-show="vm.tab == 1">
 
       <div class=" dashboard">
-        <div class="btn"  ng-click="insertHTML('<h1></h1>', 'h')">h1</div>
+        <div class="btn" ng-click="insertHTML('<h1></h1>', 'h')">h1</div>
         <div class="btn" ng-click="insertHTML('<h2></h2>', 'h')">h2</div>
         <div class="btn" ng-click="insertHTML('<h3></h3>', 'h')">h3</div>
         <div class="btn" ng-click="insertHTML('<em></em>', 'em')">em</div>
         <div class="btn" ng-click="insertHTML('<div></div>', 'div')">div</div>
         <div class="btn" ng-click="insertHTML('<p></p>', 'p')">p</div>
         <div class="btn" ng-click="insertHTML('<img src=&#34;&#34;>', 'img')">img</div>
-        <div class="btn" ng-click="insertHTML('<br &#47>', 'br')">br </div>
+        <div class="btn" ng-click="insertHTML('<br &#47>', 'br')">br</div>
       </div>
     </div>
 
@@ -48,7 +53,9 @@
 
       <div class=" dashboard">
         <div class="btn" ng-click="insertCSS('color:red;', 'color')">color</div>
-        <div class="btn" ng-click="insertCSS('border-style: solid; border-color:pink; border-width:1px;','border')">border</div>
+        <div class="btn" ng-click="insertCSS('border-style: solid; border-color:pink; border-width:1px;','border')">
+          border
+        </div>
         <div class="btn" ng-click="insertCSS('width: 100%;','width')">width</div>
         <div class="btn" ng-click="insertCSS('heigth: 50px;','height')">height</div>
         <div class="btn" ng-click="insertCSS('margin: 10px;','margin')">margin</div>
@@ -56,7 +63,9 @@
         <div class="btn" ng-click="insertCSS('padding: 20px;','padding')">padding</div>
         <div class="btn" ng-click="insertCSS('font-weight: normal;','weight')">font-weight</div>
         <div class="btn" ng-click="insertCSS('font-size: 100%;', 'size')">font-size</div>
-        <div class="btn" ng-click="insertCSS('font-family: &#34;Times New Roman&#34;, Georgia, Serif;','family')">font-family</div>
+        <div class="btn" ng-click="insertCSS('font-family: &#34;Times New Roman&#34;, Georgia, Serif;','family')">
+          font-family
+        </div>
       </div>
     </div>
 
