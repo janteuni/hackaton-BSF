@@ -26,15 +26,6 @@ angular.module('bsf', [
       if (!currentUser)
         $location.path('/login');
 
-      //Auth.isLoggedInAsync(function (loggedIn, currentUser) {
-      //  if (
-      //    (next.authenticate && !loggedIn) ||
-      //    (new RegExp('^\/admin').test(next.$$route.originalPath) && currentUser && currentUser.role !== 'admin') ||
-      //    (next.isProject && currentUser && currentUser.accountType !== 'project') ||
-      //    (next.isMember && currentUser && currentUser.accountType !== 'member')
-      //  ) {
-      //    $location.path('/login');
-      //  }
-      //});
     });
+    $rootScope.bar = true;
   });

@@ -15,7 +15,7 @@ angular.module('bsf')
       "RETOUR À LA LIGNE",
       "TAILLE DE TEXTE",
       "COULEURS",
-      "POLICEs",
+      "POLICES",
       "DIVISONS",
       "BACKGROUND",
       "IMAGES",

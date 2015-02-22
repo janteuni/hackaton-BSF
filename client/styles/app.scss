@@ -460,15 +460,36 @@ select {
   background-color: $green;
   top: 0;
   left: 0;
+  .title {
+    position: relative;
+    height: 60%;
+  }
   h1 {
+    position: absolute;
+    bottom: 0;
     font-size: 32px;
     text-transform: uppercase;
     margin-left: 20px;
   }
   p {
-    padding: 20px;
     color: rgba(grey, .7);
     font-size: 21px;
+  }
+  box-shadow: 2px 1px 10px rgba(grey, .4);
+  .description{
+    height: 40%;
+    background-color: white;
+    padding: 20px;
+    padding-bottom: 65px;
+    text-transform: uppercase;
+    .ico {
+      color: $green;
+      font-size: 36px;
+      float: right;
+    }
+    .none {
+      float: none;
+    }
   }
 }
 
