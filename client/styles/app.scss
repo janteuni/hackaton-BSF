@@ -15,6 +15,12 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
+button {
+  background-color: transparent;
+  color: grey;
+  border: none;
+}
+
 .my-preview {
   height:70%;
 }
@@ -62,6 +68,44 @@ body {
   font-size: 40px;
 }
 
+.font-s {
+  font-size: 24px;
+}
+
+.margin-t-s {
+  margin-top: 12px;
+}
+
+.margin-t-m {
+  margin-top: 24px;
+}
+
+.margin-b-l {
+  margin-bottom: 32px;
+}
+
+.margin-r-s {
+  margin-right: 12px;
+}
+
+.text-left{
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.c-grey {
+  color: rgba(grey, .7);
+}
+
+
+
 /* HEADER */
 
 header {
@@ -82,7 +126,7 @@ header {
   padding: 0 !important;
 }
 
-.raw {
+.row {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
@@ -109,14 +153,67 @@ header {
 .nav-login {
   background-color: $green;
   color: white;
-  div {
-    padding: 10px;
+  font-size: 16px;
+  .nav-1 {
+    position: relative;
+    text-align: right;
+    padding-right: 100px;
+    .i-tri {
+      padding-right: 41px;
+    }
   }
+  .nav-2 {
+    position: relative;
+    padding-left: 100px;
+    text-align: left;
+    .i-tri {
+      padding-left: 41px;
+    }
+  }
+  .i-tri {
+    height: 24px;
+    font-size: 30px;
+    color: white;
+  }
+}
+
+.btn-green {
+  background-color: $green;
+  color: white;
+  border: 1px solid $green;
+  padding: 10px;
+  &:hover, &:active {
+    background-color: rgba($green, .8);
+  }
+}
+
+.bordered {
+  height: 15px;
+  border-bottom: 1px solid rgba(grey, .5);
 }
 
 @media screen and (max-width: 400px) {
   .head-m {
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .nav-login {
+    .nav-2 {
+      text-align: center !important;
+      padding-left: 0px;
+      .i-tri {
+        padding-left: 0px;
+      }
+    }
+    .nav-1 {
+      text-align: center;
+      padding-right: 0px;
+      .i-tri {
+        padding-right: 0px;
+      }
+    }
   }
 }
 
