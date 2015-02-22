@@ -3,12 +3,28 @@ $green: #28f449;
 
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700);
 
+html{
+height:100%;
+}
+
 body {
+height:100%;
+margin:0;
   padding: 0;
   padding-top: $nav + px;
   font-family: 'Quicksand', sans-serif;
 }
 
+.my-preview {
+height:70%;
+}
+
+.ng-scope {
+height:100%;
+}
+.agame {
+height:100%;
+}
 .cb {
 list-style: none;
 padding: 10px;
@@ -52,7 +68,7 @@ border-radius-top: 3px;
 /* HEADER */
 
 header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left:0;
   right:0;
