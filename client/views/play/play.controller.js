@@ -77,6 +77,8 @@ angular.module('bsf')
       mode: 'html'
     };
 
+    vm.autoreload = false;
+
     function getCss() {
       var insert =  "#p" + vm.numPlayer;
 
@@ -104,6 +106,9 @@ angular.module('bsf')
         $( "#p" + vm.numPlayer ).html($scope.html);
       };
 
+      $scope.checkIt = function(){
+      vm.autoreload = !vm.autoreload;
+    };
 
       $scope.validateGame = function () {
 
@@ -123,5 +128,14 @@ angular.module('bsf')
         });
       };
 
+      $scope.reload = function() {
+        if (vm.autoreload) {
+          $scope.parseAndExecute();
+        }
+      };
+
+    $scope.changeReload = function() {
+      vm.autoreload = !vm.autoreload;
+    }
     });
 

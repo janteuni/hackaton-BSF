@@ -74,6 +74,7 @@ angular.module('bsf')
 
 
     vm.tab = 1;
+    vm.autoreload = false;
 
     $scope.editorOptions = {
       lineWrapping : true,
@@ -140,6 +141,20 @@ angular.module('bsf')
         .catch(function (err) {
           console.dir(err.data);
         });
+    };
+
+    $scope.checkIt = function(){
+      vm.autoreload = !vm.autoreload;
+    };
+
+    $scope.changeReload = function() {
+      vm.autoreload = !vm.autoreload;
+    };
+
+    $scope.reload = function() {
+      if (vm.autoreload) {
+        $scope.parseAndExecute();
+      }
     };
 
   });
