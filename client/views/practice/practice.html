@@ -12,7 +12,7 @@
   <style id="style">
     {{vm.compiledCss  }}
   </style>
-
+  <pre>{{vm.autoreload}}</pre>
   <div class="my-preview"></div>
 
 
@@ -20,15 +20,15 @@
     <div class="tabs">
       <div ng-class="{cb: vm.tab==2, active: vm.tab==1}" ng-click="vm.tab = 1">HTML</div>
       <div ng-class="{cb: vm.tab==1, active: vm.tab==2}" ng-click="vm.tab = 2">CSS</div>
-
+      <div class="ion-refresh font-m" ng-class="{autoreload: vm.autoreload==true, notReload: vm.autoreload==false}" ng-click="changeReload()"></div>
       <button class="ap" ng-click="parseAndExecute()">Aperçu&nbsp;&nbsp;<span class="ion-refresh"></span></button>
     </div>
     <div ng-show="vm.tab == 1">
-      <textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-model="html" caret="2" ng-click=insert()></textarea>
+      <textarea ng-change="reload()" ui-codemirror ui-codemirror-opts="editorOptions" ng-model="html" caret="2" ng-click=insert()></textarea>
     </div>
 
     <div ng-show="vm.tab == 2">
-      <textarea ui-codemirror ui-codemirror-opts="editorOptions2" ng-model="css"></textarea>
+      <textarea ng-change="reload()" ui-codemirror ui-codemirror-opts="editorOptions2" ng-model="css"></textarea>
     </div>
     <div class="tooltip">{{ vm.help }}</div>
     <div ng-show="vm.tab == 1">
