@@ -1,15 +1,30 @@
-<form name="form" ng-submit="register(form)"  novalidate>
-  <div>
-    <label>User name</label>
-    <input type="text" name="username" placeholder="MyUsername" ng-model="user.username">
+<section class="row head-m">
+  <img ng-src="assets/images/Logo.png" alt="logo-code-lv1"/>
+</section>
+<div class="row nav-login">
+  <a ng-href="/signup" class="col-xs-6 col-sm-4 col-sm-offset-2 nav-1">INSCRIPTION
+    <div class="ion-android-arrow-dropup i-tri triActive"></div>
+  </a>
+  <a ng-href="/login" class="col-xs-6 col-sm-4 nav-2">CONNEXION
+    <div class="ion-android-arrow-dropup i-tri triNotActive"></div>
+  </a>
+</div>
+
+<div class="row margin-b-l">
+  <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 padding-t-l">
+
+    <form class="basic-form" name="form" ng-submit="register(form)" novalidate>
+      <div>
+        <input type="text" name="username" placeholder="pseudo" ng-model="user.username">
+      </div>
+      <div>
+        <input type="text" name="email" placeholder="email" ng-model="user.email">
+      </div>
+      <div>
+        <input type="password" name="password" placeholder="mot de passe" ng-model="user.password">
+      </div>
+      <button type="submit"  class="btn-green">S'INSCRIRE</button>
+    </form>
   </div>
-  <div>
-    <label>Email</label>
-    <input type="text" name="email" placeholder="Email" ng-model="user.email">
-  </div>
-  <div>
-    <label>Password</label>
-    <input type="password" name="password" ng-model="user.password">
-  </div>
-  <button type="submit">Sign up</button>
-</form>
+</div>
+

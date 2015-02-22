@@ -2,37 +2,44 @@
   <img ng-src="assets/images/Logo.png" alt="logo-code-lv1"/>
 </section>
 <div class="row nav-login">
-  <div class="col-xs-6 col-sm-4 col-sm-offset-2 nav-1">INSCRIPTION
-    <div class="ion-android-arrow-dropup i-tri"></div>
-  </div>
-  <div class="col-xs-6 col-sm-4 nav-2">CONNEXION
-    <div class="ion-android-arrow-dropup i-tri"></div>
-  </div>
+  <a ng-href="/signup" class="col-xs-6 col-sm-4 col-sm-offset-2 nav-1">INSCRIPTION
+    <div class="ion-android-arrow-dropup i-tri triNotActive"></div>
+  </a>
+  <a ng-href="/login" class="col-xs-6 col-sm-4 nav-2">CONNEXION
+    <div class="ion-android-arrow-dropup i-tri triActive"></div>
+  </a>
 </div>
 
-<div class="row  margin-b-l">
-  <form class="basic-form col-xs-12 col-sm-6  col-sm-offset-3 col-md-4 col-md-offset-4" name="form"
-        ng-submit="logIn(form)" novalidate>
-    <div>
-      <input type="text" name="username" placeholder="pseudo" ng-model="user.username">
-    </div>
-    <div>
-      <input type="password" name="password" placeholder="mot de passe" ng-model="user.password">
-    </div>
-    <button type="submit" class="btn-green">CONNEXION</button>
-  </form>
+<div class="row margin-b-l">
+  <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 padding-t-l">
+
+    <form class="basic-form" name="form" ng-submit="logIn(form)" novalidate>
+      <div>
+        <input type="text" name="username" placeholder="pseudo" ng-model="user.username">
+      </div>
+      <div>
+        <input type="password" name="password" placeholder="mot de passe" ng-model="user.password">
+      </div>
+      <button type="submit" class="btn-green">CONNEXION</button>
+    </form>
+  </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-5 bordered">
-  </div>
-  <div class="col-xs-2 text-center c-grey">ou
-  </div>
-  <div class="col-xs-5 bordered">
+  <div class="log-or">
+    <div class="col-xs-5 bordered">
+    </div>
+    <div class="col-xs-2 text-center c-grey">ou
+    </div>
+    <div class="col-xs-5 bordered">
+    </div>
   </div>
 </div>
 
-<div class="row text-center margin-t-s">
-  <button ng-click="loginFB()" class="btn-c-grey"> <span class="ion-social-facebook c-grey font-s margin-r-s"></span>Se connecter avec Facebook</button>
+<div class="row text-center margin-t-s margin-b-l">
+  <button ng-click="loginFB()" class="btn-c-grey"><span class="ion-social-facebook c-grey font-s margin-r-s"></span>
+    Se connecter avec Facebook
+  </button>
 </div>
+
 
