@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bsf')
-  .controller('PlayCtrl', function ($scope, $timeout) {
 
+  .controller('PlayCtrl', function ($scope, Game, $location, currentGame, $route) {
 
     var vm = this;
 
@@ -85,12 +85,28 @@ angular.module('bsf')
       return finalCss;
     }
 
-
-
-
     $scope.parseAndExecute = function() {
       vm.compiledCss = getCss();
-      //$( "style" ).html(getCss());
       $( "#p1" ).html($scope.html);
     };
+
+
+    $scope.validateGame = function () {
+
+      var data = {
+        'css': getCss(),
+        'html' : $scope.html
+      };
+
+      var gameId = $route.current.params.game;
+
+      Game.validate(data, gameId)
+        .then(function () {
+          $location.path('/');
+        })
+        .catch(function (err) {
+          console.dir(err.data);
+        });
+    };
+
   });

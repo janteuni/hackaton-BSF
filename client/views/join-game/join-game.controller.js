@@ -9,23 +9,28 @@ angular.module('bsf')
       name: 'JoinGameCtrl'
     });
 
-    //$scope.game = {};
-    //var query = new Parse.Query(Game);
-    //query.find({
-    //  success: function (results) {
-    //    $scope.allGames = results;
-    //  },
-    //  error: function (error) {
-    //    console.log("Game search error! ");
-    //    $scope.allGames = [];
-    //  }
-    //});
+    $scope.game = {};
+    $scope.openGames = [];
+
+    Game.getGames()
+      .then(function (allGames) {
+        console.log(allGames);
+        for (var i = 0; i < allGames.length; i++) {
+          var thisGame = allGames[i];
+          if (thisGame.attributes.players.length < thisGame.attributes.num_players) {
+            $scope.openGames.push(thisGame);
+          }
+        }
+      })
+      .catch(function (err) {
+        console.dir(err.data);
+      });
 
     $scope.joinGame = function (form) {
-      console.dir($scope.game);
-      Game.join($scope.game.name)
+      Game.join($scope.game.id.id)
         .then(function () {
-          console.log("joined game!!");
+          console.log("ooook");
+          $location.path('/play/' + $scope.game.id.id);
 
         })
         .catch(function (err) {
@@ -33,25 +38,14 @@ angular.module('bsf')
         });
     };
 
-    $scope.validateGame = function () {
-      console.dir($scope.game);
+    $scope.testGetMyCurrentGame = function() {
       var currentUser = Parse.User.current();
-      Game.validate(currentUser.id)
-        .then(function () {
-          console.log("tried to validate my part!!");
+      Game.getMyCurrentGames(currentUser.id);
+    }
 
-        })
-        .catch(function (err) {
-          console.dir(err.data);
-        });
-    };
-
-    $scope.logout = function () {
-      Parse.User.logOut();
+    $scope.testGetMyPlayerNumber = function() {
       var currentUser = Parse.User.current();
-      alert("You are logging out!");
-      console.dir("Logged Out - Current User now " + currentUser);
-      $location.path('/login');
-    };
+      Game.getMyPlayerNumber(currentUser.id, 'BLOuu7jIT4');
+    }
 
   });

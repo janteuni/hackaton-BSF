@@ -1,6 +1,13 @@
+$nav: 100;
+$green: #28f449;
+
+@import url(http://fonts.googleapis.com/css?family=Quicksand:400,700);
+
 body {
-  font-family: sans-serif;
+  padding: $nav + px;
+  font-family: 'Quicksand', sans-serif;
 }
+
 .cb {
 list-style: none;
 padding: 10px;
@@ -15,6 +22,7 @@ border-radius-top: 3px;
   color: #FFF;
 }
 
+<<<<<<< HEAD
 .active {
   list-style: none;
   padding: 10px;
@@ -33,4 +41,25 @@ border-radius-top: 3px;
 
 .dashboard {
   margin-top: 50px;
+=======
+/* GENERAL */
+
+.font-m {
+  font-size: 40px;
+}
+
+/* HEADER */
+
+header {
+  position: fixed;
+  top: 0;
+  left:0;
+  right:0;
+  height: $nav + px;
+  background-color: $green;
+  padding-top: 20px;
+  .link-home {
+    color: white;
+  }
+>>>>>>> 48ff05437eaba5cea92d0bc4dd678d1ba7432690
 }

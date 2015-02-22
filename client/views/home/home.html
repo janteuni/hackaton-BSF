@@ -1,4 +1,10 @@
 <div>
-  <button ng-click="createGame()">Créer un nouveau jeu</button>
-  <button ng-click="joinGame()">Rejoindre un nouveau jeu</button>
+  <a ng-href="/create-game">Créer un nouveau jeu</a>
+  <a ng-href="/join-game">Rejoindre un nouveau jeu</a>
+<button ng-click="logout()">Log Out</button>
 </div>
+
+<h1>My Current Games</h1>
+<ul>
+  <li ng-repeat="item in myGames"><a ng-href="/play/{{item.id}}">{{item.attributes.name}}</a></li>
+</ul>

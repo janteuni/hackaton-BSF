@@ -4,7 +4,7 @@ angular.module('bsf')
   .factory('Game', function ($q) {
     var Game = Parse.Object.extend("Game");
 
-    return {
+    var resultGame = {
       create: function (data) {
         var deferred = $q.defer();
 
@@ -45,8 +45,9 @@ angular.module('bsf')
           error: function (error) {
             console.log("Game name check error");
             console.log(error);
+            deferred.reject(error);
           }
-        })
+        });
         return deferred.promise;
       },
 
@@ -55,67 +56,208 @@ angular.module('bsf')
         var currentUser = Parse.User.current();
         var query = new Parse.Query(Game);
         query.get(gameId, {
-          success: function (results) {
-            console.log(results);
+          success: function (result) {
             //Check if game exists
-            if (results.length > 0) {
-              console.log("Found the game! ");
-              console.log(results[0]);
-              console.log("Current user");
-              console.log(currentUser);
-
-              var game = results[0];
+            if (result) {
+              var game = result;
               //check if game is full..
-              if (game.attributes.players.length >= game.attributes.num_players )
-                alert("This game is full! You can't join...");
+              if (game.attributes.players.length >= game.attributes.num_players)
+                deferred.reject("This game is full! You can't join...");
               else {
                 //check if user is already subscribed...
                 var found = 0;
                 for (var i = 0; i < game.attributes.players.length; i++) {
-                  var p = game.attributes.players[i];
-                  console.log(currentUser.id + " " + p.id);
+                  var p = game.attributes.players[i].player;
                   if (currentUser.id === p.id) {
                     found++;
                     break;
                   }
                 }
-                if (found){
-                  console.log("ALREADY PARTICIPATING");
+                if (found) {
                   alert("You are already participating in this game!");
                 } else {
-                  game.add("players", currentUser);
+                  game.add("players", {
+                    player: currentUser,
+                    done: false,
+                    HTMLData: "",
+                    CSSData: ""
+                  });
                   game.save();
-                  console.log("Successfully added to the game!");
+                  deferred.resolve();
                 }
               }
             } else {
-              alert("The game " + gameName + " does not exist");
+              deferred.reject("The game " + gameId + " does not exist");
             }
           },
           error: function (error) {
-            console.log("Game search error! ");
+            deferred.reject(error);
           }
         });
         return deferred.promise;
       },
 
-      getGames: function(){
+
+      validate: function (data, gameId) {
+        var deferred = $q.defer();
+
+        //Save my data
+        var query = new Parse.Query(Game);
+        query.get(gameId, {
+          success: function (result) {
+            if (result) {
+              var players = result.attributes.players;
+              var tab = players.map(function (el) {
+                return el.player.id;
+              });
+              var index = tab.indexOf(Parse.User.current().id);
+              if (index != -1) {
+                players[index].HTMLData = data.html;
+                players[index].CSSData = data.css;
+                players[index].done = true;
+                result.attributes.players = players;
+
+                result.save(null, {
+                  success: function () {
+                    deferred.resolve();
+                  },
+                  error: function (game, error) {
+                    deferred.reject(error.message);
+                  }
+                });
+                deferred.resolve();
+              } else {
+                deferred.reject("Player not register in this game!");
+              }
+
+            } else {
+              deferred.reject("to much game found!");
+            }
+          },
+          error: function (error) {
+            deferred.reject(error);
+          }
+        });
+        return deferred.promise;
+      },
+
+      getGames: function () {
         var deferred = $q.defer();
         var allGames = [];
 
         var query = new Parse.Query(Game);
         query.find({
           success: function (results) {
-            console.log("getGames search ok! ");
             deferred.resolve(results);
           },
           error: function (error) {
-            console.log("getGames search error! ");
             deferred.reject(error);
           }
         });
         return deferred.promise;
+      },
+
+      getMyCurrentGames: function (userId) {
+        var deferred = $q.defer();
+        var myCurrentGames = [];
+        resultGame.getGames()
+          .then(function (allGames) {
+            for (var i = 0; i < allGames.length; i++) {
+              var thisGame = allGames[i];
+              for (var n = 0; n < thisGame.attributes.players.length; n++) {
+                var thisPlayer = thisGame.attributes.players[n].player;
+                if (thisPlayer.id === userId) {
+                  myCurrentGames.push(thisGame);
+                }
+              }
+            }
+            console.log(myCurrentGames);
+            deferred.resolve(myCurrentGames);
+          })
+          .catch(function (err) {
+            console.dir(err.data);
+            deferred.reject();
+          });
+        return deferred.promise;
+      },
+
+      getMyPlayerNumber: function (userId, gameId) {
+        var deferred = $q.defer();
+        var query = new Parse.Query(Game);
+        query.get(gameId, {
+          success: function (result) {
+            if (result) {
+              console.log(result);
+              var found = -1;
+              for (var i = 0; i < result.attributes.players.length; i++) {
+                var thisPlayer = result.attributes.players[i].player;
+                if (thisPlayer.id === userId)
+                  found = i;
+              }
+
+              if (found > -1) {
+                console.log("RESULT: " + found);
+                deferred.resolve(found);
+              } else {
+                console.log("RESULT: NOT FOUND");
+                deferred.reject();
+              }
+            } else {
+              deferred.reject();
+            }
+          },
+          error: function (error) {
+            deferred.reject(error);
+          }
+        });
+        return deferred.promise;
+      },
+
+      getById: function (id) {
+        var deferred = $q.defer();
+
+        var query = new Parse.Query(Game);
+        query.get(id, {
+          success: function (result) {
+            if (result) {
+              console.log(result);
+              deferred.resolve(result);
+            } else {
+              deferred.reject();
+            }
+          },
+          error: function (error) {
+            deferred.reject(error);
+          }
+        });
+        return deferred.promise;
+      },
+
+      getByIdAndNotDone: function (id) {
+        var deferred = $q.defer();
+        var playerId = Parse.User.current().id;
+
+        resultGame.getById(id)
+          .then(function (g) {
+            var game = g;
+            for (var i = 0; i < game.attributes.players.length; i++) {
+              if (game.attributes.players[i].player.id == playerId && game.attributes.players[i].done == false) {
+                deferred.resolve(game);
+              } else if (game.attributes.players[i].player.id == playerId && game.attributes.players[i].done == true) {
+                deferred.reject("Already done!");
+              }
+            }
+          })
+          .catch(function (err) {
+            deferred.reject(err.data);
+          });
+
+        return deferred.promise;
       }
+
     };
 
+    return resultGame;
+
   });
+
