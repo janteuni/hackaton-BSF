@@ -411,16 +411,10 @@ select {
   text-align: center;
 }
 
-.gameList {
-  background-color: white;
-  text-align: center;
-  display: inline-block;
-}
-
 .gameList li {
   text-align: left;
   padding: 5px;
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 #gameListMenu {

@@ -1,12 +1,18 @@
-<section class="raw head-m">
-  <img ng-src="assets/images/Logo.png" alt="logo-code-lv1"/>
-</section>
+<div class="game bg-green">
+  <section class="raw head-m">
+    <img ng-src="assets/images/Logo.png" alt="logo-code-lv1"/>
+  </section>
 
-  <a ng-href="/game" id="gameListMenu"><\MENU/></a>
-<div id="gameList">
-  <div class="gameList center game">
-    <ul>
-      <li ng-repeat="item in myGames"><a ng-href="/play/{{item.id}}">{{item.attributes.name}}</a></li>
-    </ul>
+  <section class="row">
+    <div class="basic-form pointer"><a ng-href="/game" class="c-white"><\RETOUR></a></div>
+  </section>
+  <!--<a ng-href="/game" id="gameListMenu"><\MENU/></a>-->
+  <div class="row b-white">
+    <!--<div id="gameList">-->
+      <div class="gameList game basic-form">
+        <ul>
+          <li ng-repeat="item in myGames"><a ng-href="/play/{{item.id}}">{{item.attributes.name}}</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
