@@ -1,5 +1,6 @@
 $nav: 100;
 $green: #28f449;
+$gray: rgba(128, 128, 128, 0.7);
 
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700);
 
@@ -315,9 +316,9 @@ header {
   padding: 10px;
   cursor: pointer;
   display:inline-block;
-  background-color: #000;
+  background-color: rgba(128, 128, 128, 0.7);
   color: #FFF;
-  border: 1px solid black;
+  border: 1px solid rgba(128, 128, 128, 0.7);
   border-radius-top: 3px;
 }
 .cb:hover{
@@ -341,6 +342,7 @@ header {
   color: #FFF;
   border-radius-top: 3px;
   background-color: $green;
+  border: 1px solid $green;
 }
 
 .btn {
@@ -362,17 +364,31 @@ header {
   background: $green;
 }
 
+.tabs {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+ .tabs div:last-of-type {
+   margin-left: 1%;
+ }
+
 .ap{
-  border-radius:20px ;
-  background-color: blue;
+  border-radius:5px ;
+  background-color: $gray;
   color: white;
   padding: 10px;
   padding-right: 25px;
   padding-left: 25px;
-  margin-left: 50px;
   &:hover, &:active {
-    background-color: rgba(#5f9ea0, .8);
+    background-color: $green;
   }
+  margin-right: 50px;
+  margin-left: auto;
+  margin-bottom: 5px;
 }
 
 .valDash{
