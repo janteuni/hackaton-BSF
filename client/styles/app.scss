@@ -184,6 +184,12 @@ float: right;
   padding-top: 24px;
 }
 
+.center {
+  width: 50%;
+  min-width: 300px;
+  max-width: 400px
+}
+
 /* HEADER */
 
 header {
@@ -386,8 +392,14 @@ select {
 }
 
 /* MY-GAME */
+#gameList {
+  text-align: center;
+}
+
 .gameList {
   background-color: white;
+  text-align: center;
+  display: inline-block;
 }
 
 .gameList li {

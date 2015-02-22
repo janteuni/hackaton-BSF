@@ -1,6 +1,12 @@
-<a ng-href="/game" id="gameListMenu"><\MENU/></a>
-<div class="gameList game">
-<ul>
-  <li ng-repeat="item in myGames"><a ng-href="/play/{{item.id}}">{{item.attributes.name}}</a></li>
-</ul>
+<section class="raw head-m">
+  <img ng-src="assets/images/Logo.png" alt="logo-code-lv1"/>
+</section>
+
+  <a ng-href="/game" id="gameListMenu"><\MENU/></a>
+<div id="gameList">
+  <div class="gameList center game">
+    <ul>
+      <li ng-repeat="item in myGames"><a ng-href="/play/{{item.id}}">{{item.attributes.name}}</a></li>
+    </ul>
+  </div>
 </div>
