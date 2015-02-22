@@ -12,7 +12,7 @@ angular.module('bsf')
     $scope.game = {};
     $scope.openGames = [];
 
-    Game.getGames()
+    Game.getAvailableGames()
       .then(function (allGames) {
         console.log(allGames);
         for (var i = 0; i < allGames.length; i++) {
@@ -41,11 +41,11 @@ angular.module('bsf')
     $scope.testGetMyCurrentGame = function() {
       var currentUser = Parse.User.current();
       Game.getMyCurrentGames(currentUser.id);
-    }
+    };
 
     $scope.testGetMyPlayerNumber = function() {
       var currentUser = Parse.User.current();
       Game.getMyPlayerNumber(currentUser.id, 'BLOuu7jIT4');
-    }
+    };
 
   });

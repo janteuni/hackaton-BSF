@@ -15,7 +15,6 @@ angular.module('bsf')
           success: function (results) {
             if (results.length > 0) {
               alert("That game name already exists!");
-              console.log(results);
             } else {
               var newGame = new Game();
               var currentUser = Parse.User.current();
@@ -43,8 +42,6 @@ angular.module('bsf')
             }
           },
           error: function (error) {
-            console.log("Game name check error");
-            console.log(error);
             deferred.reject(error);
           }
         });
@@ -116,6 +113,19 @@ angular.module('bsf')
                 players[index].CSSData = data.css;
                 players[index].done = true;
                 result.attributes.players = players;
+                console.log(result.attributes.players.length);
+                console.log(result.attributes.num_players);
+                if (result.attributes.players.length == result.attributes.num_players) {
+                  var end = 0;
+                  for (var i = 0; i < players.length; i++) {
+                    if (players[i].done == true) {
+                      end++;
+                    }
+                  }
+                  if (end == result.attributes.players.length) {
+                    result.set("finished", true);
+                  }
+                }
 
                 result.save(null, {
                   success: function () {
@@ -166,12 +176,40 @@ angular.module('bsf')
               var thisGame = allGames[i];
               for (var n = 0; n < thisGame.attributes.players.length; n++) {
                 var thisPlayer = thisGame.attributes.players[n].player;
-                if (thisPlayer.id === userId) {
+                if (thisPlayer.id === userId && thisGame.attributes.players[n].done == false) {
                   myCurrentGames.push(thisGame);
                 }
               }
             }
-            console.log(myCurrentGames);
+            deferred.resolve(myCurrentGames);
+          })
+          .catch(function (err) {
+            console.dir(err.data);
+            deferred.reject();
+          });
+        return deferred.promise;
+      },
+
+      getAvailableGames: function () {
+        var deferred = $q.defer();
+        var myCurrentGames = [];
+        var userId = Parse.User.current().id;
+        resultGame.getGames()
+          .then(function (allGames) {
+            for (var i = 0; i < allGames.length; i++) {
+              var thisGame = allGames[i];
+              if (thisGame.attributes.finished == false) {
+                var alreadyJoin = false;
+                for (var n = 0; n < thisGame.attributes.players.length; n++) {
+                  if (thisGame.attributes.players[n].player.id == userId) {
+                    alreadyJoin = true;
+                  }
+                }
+                if (alreadyJoin == false) {
+                  myCurrentGames.push(thisGame);
+                }
+              }
+            }
             deferred.resolve(myCurrentGames);
           })
           .catch(function (err) {
@@ -187,7 +225,6 @@ angular.module('bsf')
         query.get(gameId, {
           success: function (result) {
             if (result) {
-              console.log(result);
               var found = -1;
               for (var i = 0; i < result.attributes.players.length; i++) {
                 var thisPlayer = result.attributes.players[i].player;
