@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bsf')
-  .controller('CreateGameCtrl', function ($scope, Game) {
+  .controller('CreateGameCtrl', function ($scope, Game, $location) {
 
     var vm = this;
 
@@ -15,9 +15,9 @@ angular.module('bsf')
     $scope.createGame = function (form) {
       console.dir($scope.game);
       Game.create($scope.game)
-        .then(function () {
-          console.log("Calling Create Game!!");
-
+        .then(function (newgame) {
+          console.log("Game " + newgame.id + " created");
+          $location.path('/play/' + newgame.id);
         })
         .catch(function (err) {
           console.dir(err.data);
