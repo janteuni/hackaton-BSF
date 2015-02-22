@@ -3,12 +3,12 @@ $green: #28f449;
 
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700);
 
-html{
-height:100%;
+html {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  height:100%;
   margin:0;
   padding: 0;
   padding-top: $nav + px;
@@ -82,6 +82,11 @@ header {
   padding: 0 !important;
 }
 
+.raw {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 /* RENDER */
 
 #render{
@@ -93,7 +98,6 @@ header {
 .head-m {
   background-color: $green;
   padding-bottom: 90px;
-  padding-left: 50px;
   text-align: center;
   img {
     width: 50%;
@@ -113,7 +117,6 @@ header {
 @media screen and (max-width: 400px) {
   .head-m {
     text-align: center;
-    padding-left: 0px;
   }
 }
 
