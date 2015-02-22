@@ -5,6 +5,7 @@ angular.module('bsf')
     var Game = Parse.Object.extend("Game");
 
     var resultGame = {
+
       create: function (data) {
         var deferred = $q.defer();
 
@@ -31,7 +32,6 @@ angular.module('bsf')
 
               newGame.save(null, {
                 success: function (newGame) {
-                  alert('New object created with objectId: ' + newGame.id);
                   deferred.resolve(newGame);
                 },
                 error: function (newGame, error) {
