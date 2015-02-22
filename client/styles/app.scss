@@ -169,6 +169,10 @@ float: right;
   color: rgba(grey, .7);
 }
 
+.c-white {
+  color: white !important;
+}
+
 .b-white {
   background-color: white;
 }
@@ -182,6 +186,10 @@ float: right;
 
 .padding-t-m {
   padding-top: 24px;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 /* HEADER */
@@ -299,6 +307,9 @@ header {
 @media screen and (max-width: 400px) {
   .head-m {
     text-align: center;
+  }
+  .basic-form {
+    padding: 20px;
   }
 }
 
