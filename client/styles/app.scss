@@ -491,8 +491,39 @@ select {
       float: none;
     }
   }
+  &.ng-show
+  {
+    -webkit-animation-name: trUp;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(.26, 1.46, .46, 1.07);
+    -webkit-animation-duration: 500ms;
+  }
+  &.ng-hide{
+    -webkit-animation-name: trDown;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(.26, 1.46, .46, 1.07);
+    -webkit-animation-duration: 800ms;
+  }
 }
 
 .training {
   padding-left: 300px;
+}
+
+@-webkit-keyframes trUp {
+  0% {
+    -webkit-transform: translateX(-400px);;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes trDown {
+  0% {
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-460px);
+  }
 }
