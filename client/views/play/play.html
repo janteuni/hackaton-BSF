@@ -1,5 +1,5 @@
 <div style="height:100%;">
-<button ng-click="parseAndExecute()">GO</button>
+<button ng-click="parseAndExecute()">Aperçu</button>
 
 <style id="style">
   {{ vm.compiledCss }}
@@ -7,6 +7,10 @@
 
 <div class="my-preview"></div>
 
+
+
+
+<div class="sink">
 
 <div ng-class="{cb: vm.tab==2, active: vm.tab==1}" ng-click="vm.tab = 1">HTML</div>
 <div ng-class="{cb: vm.tab==1, active: vm.tab==2}"  ng-click="vm.tab = 2">CSS</div>
@@ -20,21 +24,22 @@
   <textarea ui-codemirror ui-codemirror-opts="editorOptions2" ng-model="css"></textarea>
 </div>
 
+    <div class=" dashboard">
+      <div class="btn" ng-click="insert('<h1></h1>')">h1</div>
+      <div class="btn" ng-click="insert('<h2></h2>')">h2</div>
+      <div class="btn" ng-click="insert('<h3></h3>')">h3</div>
+      <div class="btn" ng-click="insert('<em></em>')">em</div>
+      <div class="btn" ng-click="insert('<div></div>')">div</div>
+      <div class="btn" ng-click="insert('<p></p>')">p</div>
+      <div class="btn" ng-click="insert('<img src="">')">img</div>
+      <div class="btn" ng-click="insert('<br >')">br </div>
+    </div>
 
-<div class="dashboard">
-<div class="btn" ng-click="insert('<h1></h1>')">h1</div>
-  <div class="btn" ng-click="insert('<h2></h2>')">h2</div>
-  <div class="btn" ng-click="insert('<h3></h3>')">h3</div>
-  <div class="btn" ng-click="insert('<em></em>')">em</div>
-  <div class="btn" ng-click="insert('<div></div>')">div</div>
-  <div class="btn" ng-click="insert('<p></p>')">p</div>
-  <div class="btn" ng-click="insert('<img >')">img</div>
+<div class="valDash">
+  <div class="btnVal" ng-click="validateGame()">valider</div>
+  </div>
 </div>
-
-<button ng-click="validateGame()">VALIDER</button>
-
 </div>
-
 <!-- J'ai modifier un peu le code pour la balise #p1 => c'est devenu une balide class="my-preview" a laquelle j'ajoute des le debut un id specifique selon
 l'index du joueur en abse de donnee
 mais j'ai l'impression que j'ai tout peter tes boutons... c'est byzar-->
