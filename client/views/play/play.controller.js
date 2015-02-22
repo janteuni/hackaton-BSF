@@ -2,6 +2,7 @@
 
 angular.module('bsf')
 
+
   .controller('PlayCtrl', function ($scope, Game, $location, currentGame, $route) {
 
     var vm = this;
@@ -41,11 +42,7 @@ angular.module('bsf')
         myField.value += myValue;
       }
     }
-
-    function addtext() {
-      var $t = $(this);
-      insertAtCursor(this, '<h1></h1>');
-    }
+    
     $scope.insert = function(str)  {
 
       $scope.html += str;
@@ -81,46 +78,46 @@ angular.module('bsf')
       var insert = "#p1";
 
       var regexp = /\S+(?= {)/g;
-      var match, matches = [];
+        var match, matches = [];
 
-      while ((match = regexp.exec($scope.css)) != null) {
-        matches.push(match.index);
+        while ((match = regexp.exec($scope.css)) != null) {
+          matches.push(match.index);
+        }
+
+        var finalCss = $scope.css;
+        var i = 0;
+        matches.map(function(pos) {
+
+          pos = pos + (5 * i);
+          var css = [finalCss.slice(0, pos), insert, finalCss.slice(pos)].join(' ');
+          finalCss = css;
+          i++;
+        });
+        return finalCss;
       }
 
-      var finalCss = $scope.css;
-      var i = 0;
-      matches.map(function(pos) {
-
-        pos = pos + (5 * i);
-        var css = [finalCss.slice(0, pos), insert, finalCss.slice(pos)].join(' ');
-        finalCss = css;
-        i++;
-      });
-      return finalCss;
-    }
-
-    $scope.parseAndExecute = function() {
-      vm.compiledCss = getCss();
-      $( "#p" + $scope.numPlayer ).html($scope.html);
-    };
-
-
-    $scope.validateGame = function () {
-
-      var data = {
-        'css': getCss(),
-        'html' : $scope.html
+      $scope.parseAndExecute = function() {
+        vm.compiledCss = getCss();
+        $( "#p" + $scope.numPlayer ).html($scope.html);
       };
 
-      var gameId = $route.current.params.game;
 
-      Game.validate(data, gameId)
+      $scope.validateGame = function () {
+
+        var data = {
+          'css': getCss(),
+          'html' : $scope.html
+        };
+
+        var gameId = $route.current.params.game;
+
+        Game.validate(data, gameId)
         .then(function () {
           $location.path('/');
         })
         .catch(function (err) {
           console.dir(err.data);
         });
-    };
+      };
 
-  });
+    });
