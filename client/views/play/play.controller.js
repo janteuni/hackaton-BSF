@@ -8,8 +8,39 @@ angular.module('bsf')
 
     vm.compiledCss = '';
 
-    $scope.css= 'h1 { color:red }';
-    $scope.html = '<h1>TOTOTOTOTO</h1>';
+    function insertAtCursor(myField, myValue) {
+      //IE support
+      if (document.selection) {
+        myField.focus();
+        var sel = document.selection.createRange();
+        sel.text = myValue;
+      }
+      //MOZILLA and others
+      else if (myField.selectionStart || myField.selectionStart == '0') {
+        var startPos = myField.selectionStart;
+        var endPos = myField.selectionEnd;
+        myField.value = myField.value.substring(0, startPos)
+        + myValue
+        + myField.value.substring(endPos, myField.value.length);
+        myField.selectionStart = startPos + myValue.length;
+        myField.selectionEnd = startPos + myValue.length;
+      } else {
+        myField.value += myValue;
+      }
+    }
+
+    function addtext() {
+      var $t = $(this);
+      insertAtCursor(this, '<h1></h1>');
+    }
+    $scope.insert = function(str)  {
+
+      $scope.html += str;
+
+    };
+
+    $scope.css= 'h1 { color:red } .toto { background-color:blue }';
+    $scope.html = '<div id="toto"><h1>TOTOTOTOTO</h1></div>';
 
     vm.tab = 1;
 
