@@ -15,13 +15,33 @@ display:inline-block;
 background-color: #000;
 color: #FFF;
 border: 1px solid black;
-border-radius: 5px;
+border-radius-top: 3px;
 }
 .cb:hover{
   background-color: #4a4a4a;
   color: #FFF;
 }
 
+<<<<<<< HEAD
+.active {
+  list-style: none;
+  padding: 10px;
+  display: inline-block;
+  color: #FFF;
+  border-radius-top: 3px;
+  background-color: lawngreen;
+}
+
+.btn {
+  padding: 5px;
+  display:inline-block;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.dashboard {
+  margin-top: 50px;
+=======
 /* GENERAL */
 
 .font-m {
@@ -41,4 +61,5 @@ header {
   .link-home {
     color: white;
   }
+>>>>>>> 48ff05437eaba5cea92d0bc4dd678d1ba7432690
 }
