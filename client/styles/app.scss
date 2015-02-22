@@ -16,7 +16,6 @@ body {
   font-family: 'Quicksand', sans-serif;
   font-size: 16px;
   height: 100%;
-  overflow-y: hidden;
 }
 
 .content {
@@ -243,6 +242,19 @@ header {
   .bar-left {
     width: 100% !important;
   }
+  .CodeMirror{
+    height: 100px;
+  }
+  header {
+    height: 50px;
+    padding-top: 0px;
+  }
+  .my-preview {
+    padding: 0px;
+  }
+  body {
+    padding-top: 50px;
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -292,10 +304,12 @@ header {
   position: absolute;
   padding-left: 25px;
 }
+
 .my-preview {
   padding: 50px;
-
+  min-height: 600px;
 }
+
 .cb {
   list-style: none;
   padding: 10px;
